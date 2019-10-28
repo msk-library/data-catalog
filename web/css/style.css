@@ -33,7 +33,7 @@ http://ryanfait.com/
 }
 #page-header {
  height:100px;
- background: black;
+ background: white;
   position:relative;
   padding:1em;
 }
@@ -58,7 +58,7 @@ http://ryanfait.com/
   margin-left:3em;
 }
 .pagetitlelink {
-  color:rgb(243,243,243);
+  color:rgb(40,132,227);
 }
 .pagetitlelink:hover {
   color:white;
@@ -96,7 +96,7 @@ http://ryanfait.com/
 }
 .nav-tabs>li>a {
   padding:5px 15px;
-  color:rgb(200,200,200);
+  color:rgb(255,255,255);
 }
 .nav-tabs>li>a:hover {
   color:black;
@@ -108,7 +108,7 @@ http://ryanfait.com/
   margin-right:0px;
 }
 .nav-tabs>li:not(.active) {
-  background: rgba(140,140,140,.42);
+  background: rgba(41,131,227);
 }
 .nav-tabs>li.privileged-nav-link>a {
   color:rgb(236, 161, 108);
