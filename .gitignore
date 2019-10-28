@@ -61,3 +61,4 @@ app/config/dev/security.yml
 app/Resources/views/institution/*
 web/css/institution/*
 src/AppBundle/Form/Type/ContactFormEmailType.php
+index-to-solr.php
