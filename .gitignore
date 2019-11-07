@@ -53,10 +53,6 @@ bin/*
 
 # ignore files that will be customized except the institution view files
 app/config/**/parameters.yml
-app/config/parameters.yml
-app/config/dev/parameters.yml
-app/config/prod/parameters.yml
-app/config/common/security.yml
-app/config/dev/security.yml
+app/config
 src/AppBundle/Form/Type/ContactFormEmailType.php
 index-to-solr.php
