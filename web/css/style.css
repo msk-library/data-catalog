@@ -627,8 +627,8 @@ a.authors-collapse {
  * FOOTER
  * **************/
 #footer {
-        background-color: #333;
-        background: url(../img/background_gradient.gif) repeat-x 0 0 #333;
+        background-color: #707070;
+        background: url(../img/background_gradient.gif) repeat-x 0 0 #707070;
         margin-top:7em;
         clear:both;
         width:100%;
@@ -712,7 +712,7 @@ p#phone_number strong a {
 #footer_secondary li a {
         color: #a5a5a5;
         font-size: 16px;
-        border-bottom: 1px solid #333;
+        border-bottom: 1px solid #707070;
         *zoom: 1;
         background: transparent;
 }
