@@ -1,7 +1,7 @@
 .page-wrapper {
   min-height: 100%;
 }
-
+/* Header */
 #page-header {
   color: white;
   background-color: rgb(40,132,227);
@@ -16,6 +16,8 @@
   padding-top: 5px;
   padding-right: 5px;
 }
+
+/* Footer */
 /* Overriding this so the footer is responsive, with a fixed height, mobile breaks the content*/
 footer, .push {
   height: auto; /* '.push' must be the same height as 'footer' */
