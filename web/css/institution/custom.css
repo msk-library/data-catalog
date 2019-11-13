@@ -15,7 +15,7 @@ div.footer-wrapper {
   line-height: 30px;
   text-align: center;
   padding: 2px 0 2px 0;
-  height: auto; /* Anover override to make footer content fully display on mobile devices */
+  height: auto; /* Another override to make footer content fully display on mobile devices */
 }
 
 div.footer-wrapper a {
