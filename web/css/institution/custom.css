@@ -1,6 +1,7 @@
 .page-wrapper {
   min-height: 100%;
 }
+
 /* Header */
 #page-header {
   color: white;
@@ -18,6 +19,14 @@
 }
 
 /* Footer */
+
+/* the submit button */
+#dataset_save {
+  display:block;
+  margin-bottom: 175px;
+  
+}
+
 /* Overriding this so the footer is responsive, with a fixed height, mobile breaks the content*/
 footer, .push {
   height: auto; /* '.push' must be the same height as 'footer' */
