@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/institution/custom.css') }}" />
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
         {# placeholder blocks for page-specific elements #}
         {% block page_stylesheets %}
@@ -65,10 +66,12 @@
       <a href="#maincontent" class="skip">Skip to content</a>
       <div class="page-wrapper">
       <header id="page-header">
+      <!--
         <span class="logo-container">
         {# tell us where your site's logo lives in 'institution/logo.html.twig' #}
         {% include ['institution/logo.html.twig','logo.html.twig'] ignore missing %}
         </span>
+        -->
         <span class="pagetitle">
           <h2><a class="pagetitlelink" href="/">{{ site_name }}</a></h2>
         </span>
@@ -96,15 +99,17 @@
       </header> 
       <div id="search-header">
         <div class="row">
-          <p class="search-box-description">Search here to find large public and licensed datasets</p>
-          <form id="keyword-search-form" class="input-group">
-              <label for="keyword-search-input">search terms</label>
-              <input type="text" class="form-control" id="keyword-search-input">
-              <span class="input-group-btn">
-                <button id="keyword-search-submit" class="btn btn-default" type="submit">Go!</button>
-              </span>
-          </form>
+          <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 text-center">
+            <!--<span class="search-box-description">Search here to find large public and licensed datasets</span>-->
 
+            <form id="keyword-search-form" class="input-group">
+                <label for="keyword-search-input">search terms</label>
+                <input type="text" class="form-control" placeholder="Find datasets used in research at MSK" id="keyword-search-input">
+                <span class="input-group-btn">
+                  <button id="keyword-search-submit" class="btn btn-default" type="submit">Go!</button>
+                </span>
+            </form>
+          </div>
         </div><!-- /.row -->
       </div> 
       <div id="maincontent" class="content-container">

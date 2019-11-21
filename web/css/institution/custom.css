@@ -2,6 +2,10 @@
   min-height: 100%;
 }
 
+body {
+  font-family: 'Lato', 'Helvetica', 'Arial', 'Verdana', 'sans-serif';
+}
+
 /* Header */
 #page-header {
   color: white;
@@ -16,6 +20,17 @@
   top: 0;
   padding-top: 5px;
   padding-right: 5px;
+}
+
+/* Search Header */
+#search-header {
+  background: #03AEDF;
+  padding: 2px;
+}
+
+/* Search Box */
+form.input-group {
+  width: 100%;
 }
 
 /* Footer */
