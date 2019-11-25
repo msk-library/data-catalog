@@ -1,5 +1,10 @@
 .page-wrapper {
   min-height: 100%;
+  margin: 0 auto;
+}
+
+.container-fluid {
+padding: 0;
 }
 
 body {
@@ -9,8 +14,25 @@ body {
 /* Header */
 #page-header {
   color: white;
-  background-color: rgb(40,132,227);
+  background-color: #1c75cd;
+  height: 100%;
 }
+
+#logo-container {
+  height: 70px;
+}
+
+#logo {
+  height: 5em;
+  margin-top: 1em;
+}
+
+#msk-logo {
+  height: 4em;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
 
 .pagetitlelink {
   color: white;
@@ -20,6 +42,15 @@ body {
   top: 0;
   padding-top: 5px;
   padding-right: 5px;
+}
+
+.nav-tabs>li:not(.active) {
+  background: #1c75cd;
+}
+
+.logo-right {
+  float: right;
+  margin-top: 30px;
 }
 
 /* Search Header */
@@ -50,6 +81,7 @@ footer, .push {
 
 #footer {
   position: absolute;
+  margin-top: 0px;
 }
 div.footer-wrapper {
   color: white;
