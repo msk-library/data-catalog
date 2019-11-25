@@ -81,11 +81,6 @@
         <div class="col-md-4">
         <div class="row">
         <nav class="nav-links">
-          {% if is_granted('ROLE_USER') %}
-           <h4 id="logged-in-badge">
-             <a href="{{ path('admin_panel') }}"><span class="greeting label label-warning">Welcome!</span></a>
-           </h4>
-          {% endif %}
           <ul class="nav nav-tabs">
             <li class="home-nav-link {% if app.request.get('_route') == 'default_search_results'%}active{% endif %} "><a href="/">Home</a></li>
             <li class="about-nav-link {% if app.request.get('_route') == 'about' %}active{% endif %}"><a href="{{ path('about') }}">About</a></li>
