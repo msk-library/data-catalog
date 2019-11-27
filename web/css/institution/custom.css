@@ -1,12 +1,81 @@
+html {
+  -ms-overflow-style: scrollbar;
+}
 .page-wrapper {
   min-height: 100%;
+  margin: 0 auto;
 }
 
+.container-fluid {
+padding: 0;
+}
+
+body {
+  font-family: 'Lato', 'Helvetica', 'Arial', 'Verdana', 'sans-serif';
+}
+
+/* Header */
+#page-header {
+  color: white;
+  background-color: #1c75cd;
+  height: 100%;
+}
+
+#logo-container {
+  height: 70px;
+}
+
+#logo {
+  height: 5em;
+  margin-top: 1em;
+}
+
+#msk-logo {
+  height: 4em;
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+
+.pagetitlelink {
+  color: white;
+}
+
+.nav-links {
+  top: 0;
+  padding-top: 5px;
+  padding-right: 5px;
+}
+
+.nav-tabs>li:not(.active) {
+  background: #1c75cd;
+}
+
+.logo-right {
+  float: right;
+  margin-top: 30px;
+}
+
+/* Search Header */
+#search-header {
+  background: #03AEDF;
+  padding: 2px;
+}
+
+/* Search Box */
+form.input-group {
+  width: 100%;
+}
+
+/* Footer */
+
+/* the submit button */
 #dataset_save {
   display:block;
   margin-bottom: 175px;
   
 }
+
 /* Overriding this so the footer is responsive, with a fixed height, mobile breaks the content*/
 footer, .push {
   height: auto; /* '.push' must be the same height as 'footer' */
@@ -15,6 +84,7 @@ footer, .push {
 
 #footer {
   position: absolute;
+  margin-top: 0px;
 }
 div.footer-wrapper {
   color: white;

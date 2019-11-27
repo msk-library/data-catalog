@@ -11,7 +11,6 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('css/institution/custom.css') }}" />
-        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 
         {# placeholder blocks for page-specific elements #}
         {% block page_stylesheets %}
@@ -61,61 +60,51 @@
        {% block results_JSONLD_output %}
        {% endblock %}
 
-</head>
-<body>
-  <div class="container-fluid">
+    </head>
+    <body>
       <a href="#maincontent" class="skip">Skip to content</a>
       <div class="page-wrapper">
       <header id="page-header">
-      <div class="row">
-        <div class="col-lg-8 col-md-7 col-sm-6 logo-container">
+        <span class="logo-container">
         {# tell us where your site's logo lives in 'institution/logo.html.twig' #}
         {% include ['institution/logo.html.twig','logo.html.twig'] ignore missing %}
-        </div>
-        
-        <!--
+        </span>
         <span class="pagetitle">
           <h2><a class="pagetitlelink" href="/">{{ site_name }}</a></h2>
         </span>
-        -->
-        <div class="col-lg-4 col-md-5 col-sm-6">
-        <div class="row">
         <nav class="nav-links">
+          {% if is_granted('ROLE_USER') %}
+           <h4 id="logged-in-badge">
+             <a href="{{ path('admin_panel') }}"><span class="greeting label label-warning">Welcome!</span></a>
+           </h4>
+          {% endif %}
           <ul class="nav nav-tabs">
             <li class="home-nav-link {% if app.request.get('_route') == 'default_search_results'%}active{% endif %} "><a href="/">Home</a></li>
-            <li class="about-nav-link {% if app.request.get('_route') == 'about' %}active{% endif %}"><a href="{{ path('about') }}">About</a></li>
+            <li class="about-nav-link {% if app.request.get('_route') == 'about' %}active{% endif %}"><a href="{{ path('about') }}">About the Catalog</a></li>
             <li class="contact-page-link {% if app.request.get('_route') == 'contact' %}active{% endif %}"><a href="{{ path('contact') }}">Contact Us</a></li>
             {% if is_granted('ROLE_USER') %}
               <li class="privileged-nav-link admin-page-link {% if is_granted('ROLE_USER') and adminPage is defined and adminPage==true %}active{% endif %}"><a href="{{ path('admin_panel') }}">Admin</a></li>
             {% endif %}
             {% if is_granted('ROLE_USER') %}
               <li class="privileged-nav-link"><a href="{{ path('logout') }}">Logout</a></li>
+            {% else %}
+              <li class="login-link hidden-xs"><a href="{{ path('login_route') }}">Login</a></li>
             {% endif %}
 
           </ul>
         </nav>
-        </div class="row">
-        <div class="row">
-        <div class="logo-right ">
-          {% include ['institution/msklogo.html.twig','logo.html.twig'] ignore missing %}
-        </div>
-        </div><!-- row -->
-        </div>
-        </div>
       </header> 
       <div id="search-header">
         <div class="row">
-          <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 text-center">
-            <!--<span class="search-box-description">Search here to find large public and licensed datasets</span>-->
+          <p class="search-box-description">Search here to find large public and licensed datasets</p>
+          <form id="keyword-search-form" class="input-group">
+              <label for="keyword-search-input">search terms</label>
+              <input type="text" class="form-control" id="keyword-search-input">
+              <span class="input-group-btn">
+                <button id="keyword-search-submit" class="btn btn-default" type="submit">Go!</button>
+              </span>
+          </form>
 
-            <form id="keyword-search-form" class="input-group">
-                <label for="keyword-search-input">search terms</label>
-                <input type="text" class="form-control" placeholder="Find datasets used in research at MSK" id="keyword-search-input">
-                <span class="input-group-btn">
-                  <button id="keyword-search-submit" class="btn btn-default" type="submit">Go!</button>
-                </span>
-            </form>
-          </div>
         </div><!-- /.row -->
       </div> 
       <div id="maincontent" class="content-container">
@@ -174,6 +163,5 @@
         {% include ['institution/footer.html.twig','footer.html.twig'] ignore missing %}
 
       </footer>
-      </div> <!-- container-fluid -->
   </body>
 </html>
