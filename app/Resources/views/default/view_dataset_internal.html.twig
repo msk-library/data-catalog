@@ -85,6 +85,7 @@ $(function () {
 							{% set authorNote = '' %}
 							{% set authorClass = '' %}
 							{% if author.getPerson.getBioUrl %}
+                {% set authorClass = authorClass ~ ' msk-author' %}
 								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getBioUrl ~ '" target="_blank">Synapse</a></p>' %}
 							{% endif %}
 							{% if author.getPerson.getOrcidId %}

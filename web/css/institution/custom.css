@@ -105,3 +105,8 @@ div.footer-wrapper a {
   margin-top: -3px;
   padding-left: 4px;
 }
+
+/* Detailed Record View */
+.msk-author {
+  background-color: aliceblue;
+}
