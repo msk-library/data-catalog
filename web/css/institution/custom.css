@@ -118,6 +118,10 @@ div.footer-wrapper a {
 }
 
 /* About Page */
+
+.about-page-column {
+  padding-top:2em;
+}
 .about-page-section {
   margin-bottom: 7em;
 }
@@ -132,3 +136,4 @@ div.footer-wrapper a {
   float: left;
   margin-right: 2em;
 }
+
