@@ -126,3 +126,24 @@ div.footer-wrapper a {
   font-weight: 700;
   cursor: pointer;
 }
+
+
+/* About Page */
+
+.about-page-column {
+  padding-top:2em;
+}
+.about-page-section {
+  margin-bottom: 7em;
+}
+
+.team-bio-section {
+  margin-bottom: 5em;
+  overflow: hidden;
+}
+
+.team-bio-picture {
+  width: 300px;
+  float: left;
+  margin-right: 2em;
+}
