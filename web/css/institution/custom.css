@@ -116,3 +116,19 @@ div.footer-wrapper a {
   color: #ffffff;
 
 }
+
+/* About Page */
+.about-page-section {
+  margin-bottom: 7em;
+}
+
+.team-bio-section {
+  margin-bottom: 5em;
+  overflow: hidden;
+}
+
+.team-bio-picture {
+  width: 300px;
+  float: left;
+  margin-right: 2em;
+}
