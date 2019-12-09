@@ -110,3 +110,9 @@ div.footer-wrapper a {
 .msk-author {
   background-color: aliceblue;
 }
+
+.internal-dataset-badge {
+  background: rgb(255,140,0);
+  color: #ffffff;
+
+}
