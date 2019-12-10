@@ -108,12 +108,16 @@ div.footer-wrapper a {
 
 /* Detailed Record View */
 .msk-author {
-  background-color: aliceblue;
 }
 
 .internal-dataset-badge {
   background: rgb(255,64,13);
   color: #ffffff;
+}
+
+.msk-author-note {
+  font-size:.75em;
+  display:block;
 }
 
 /* Facets */
@@ -167,3 +171,4 @@ div.footer-wrapper a {
   border-left: 3px solid rgb(255,64,13);
   letter-spacing: 0.5px;
 }
+
