@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 {% from 'default/_JSONLD_output.html.twig' import JSONLD_output %}
+
+
+
 {% block page_scripts %}
 <script>
 /**
@@ -8,15 +11,38 @@
 var trackOutboundLink = function(url, label) {
   ga('send', 'event', 'outbound', 'click', label);
 }
+
 /**
-* Initialize Author popovers
+* Initialize page popovers
 */
 $(function () {
-  $('[data-toggle="popover"]').popover({
+  // initialize Author popovers
+  $('.dataset-authors-section [data-toggle="popover"]').popover({
      'html':'true',
      'animation':false,
      'trigger':'manual',
      'placement':'bottom',
+  }).on("mouseenter", function () {
+    var _this = this;
+    $(this).popover("show");
+    $(".popover").on("mouseleave", function () {
+      $(_this).popover('hide');
+    });
+  }).on("mouseleave", function () {
+    var _this = this;
+    setTimeout(function () {
+        if (!$(".popover:hover").length) {
+            $(_this).popover("hide");
+        }
+    }, 200);
+  });
+
+  // initialize Publisher popovers
+  $('.publishers-list [data-toggle="popover"]').popover({
+     'html':'true',
+     'animation':false,
+     'trigger':'manual',
+     'placement':'top',
   }).on("mouseenter", function () {
     var _this = this;
     $(this).popover("show");
@@ -36,18 +62,20 @@ $(function () {
 {% endblock %}
 
 
-{% block JSONLD_output %}
-{{ JSONLD_output(dataset) }}
-{% endblock %}
-
 
 {% block page_title %}
  <title>{{ dataset.title }}</title>
 {% endblock %}
 
 
-{% block content %}
 
+{% block JSONLD_output %}
+{{ JSONLD_output(dataset) }}
+{% endblock %}
+
+
+
+{% block content %}
 <div id="dataset-full-view-container" class="col-xs-8 col-xs-offset-2">
 <div class="row">
   <div class="" id="dataset-detail-titlebox">
@@ -59,22 +87,20 @@ $(function () {
   </div>
   {% endif %}
      <h1 class="dataset-detail-maintitle">{{ dataset.title }} 
-       <small><div class="internal-dataset-badge details-page">{{ internal_dataset_text }}</div></small> 
        {% if dataset.published == false %}<small>[unpublished]</small>{%endif%}
        {% if dataset.archived == true %}<small>[archived]</small>{%endif%}
      </h1>
       <span class="dataset-detail-alttitle">
-				{% if dataset.datasetAlternateTitles.count > 0 %}
-				 <h5>Alternate Titles(s): 
-					{% for title in dataset.datasetAlternateTitles %}
-					{{ title.getDisplayName|trim }}{% if not loop.last %}, {% endif %}
-					{% endfor %}
-					</h5>
-				{% endif %}
-			</span>
-			<p>
-				<span class="dataset-detail-id">UID: {{ dataset.id }}</span>
-			</p>
+      {% if dataset.datasetAlternateTitles.count > 0 %}
+       <h5>Alternate Titles(s): 
+        {% for title in dataset.datasetAlternateTitles %}
+        {{ title.getDisplayName|trim }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+        </h5>
+      {% endif %}
+      <p>
+          <span class="dataset-detail-id">UID: {{ dataset.id }}</span>
+      </p>
 			 {% if dataset.getAuthorships is not empty %}
 				<div class="dataset-authors-section">
 					<span class="dataset-detail-authors">Author(s):
@@ -84,13 +110,13 @@ $(function () {
 							{% set authorNote = '' %}
 							{% set authorClass = '' %}
 							{% if author.getPerson.getBioUrl %}
-								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getBioUrl ~ '" target="_blank">Institutional profile</a></p>' %}
+								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getBioUrl ~ '" >View profile</a></p>' %}
 							{% endif %}
 							{% if author.getPerson.getOrcidId %}
-								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getOrcidId ~ '" target="_blank">ORCID Profile</a></p>' %}
+								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getOrcidId ~ '" >ORCID Profile</a></p>' %}
 							{% endif %}
 							{% if author.getPerson.getDatasetAssociations|length > 1 %}
-								{% set popoverContent = popoverContent ~ '<p><a href="/search?keyword=authors:%22' ~ author.getPerson.getFullName ~ '%22" target="_blank">View other datasets</a></p>' %}
+								{% set popoverContent = popoverContent ~ '<p><a href="/search?keyword=authors:%22' ~ author.getPerson.getFullName ~ '%22" >View other datasets</a></p>' %}
 							{% endif %}
 							{% if author.isCorrespondingAuthor %}
 								{% set correspondingAuthorExists = true %}
@@ -109,6 +135,8 @@ $(function () {
 				</div>
 			{% endif %}
 		</span>
+
+    </p>
   </div>
 </div>
 <div class="row">
@@ -116,6 +144,21 @@ $(function () {
    <dl>
      <dt>Description</dt>
        <dd>{{ dataset.description|raw }}</dd>
+     {% if dataset.publishers is not empty %}
+     <dt>Publisher</dt>
+       <dd class="publishers-list">
+         {% for publisher in dataset.publishers %}
+       <div class="multiple-item-list">
+      {% if publisher.publisherUrl %}
+        {% set popoverContent = "<p><a href='#{ publisher.publisherUrl }' target='_blank'>View publisher website</a></p><p><a href='/search?keyword=publishers:#{ publisher.publisherName }' target='_blank'>View other datasets</a></p>" %}
+      {% else %}
+        {% set popoverContent = "<p><a href='/search?keyword=publishers:#{ publisher.publisherName }' target='_blank'>View other datasets</a></p>" %}
+      {% endif %}
+        <a tabindex="0" class="publisher-link" role="button" data-toggle="popover" title="{{ publisher.publisherName }}" data-content="{{ popoverContent }}">{{ publisher.publisherName }}</a>
+       </div>
+       {% endfor %}
+        </dd>
+      {% endif %}
      
       {% if dataset.subjectStartDate is not empty and dataset.subjectStartDate == dataset.subjectEndDate %}
       <dt>Timeframe</dt>
@@ -124,6 +167,7 @@ $(function () {
       <dt>Timeframe</dt>
        <dd>{{ dataset.subjectStartDate }} - {{ dataset.subjectEndDate }}</dd>
       {% endif %} 
+    
 
      {% if dataset.subjectGeographicAreaDetails is not empty %}
      <dt>Geographic Coverage</dt>
@@ -153,20 +197,18 @@ $(function () {
           {% endfor %}
         {% endif %}
         </dd>
-       {% endif %}
+      {% endif %}
      
-
         {% if dataset.localExperts|length > 0 %}
          <dt>{{ local_expert_display }}</dt><dd>
          {% for expert in dataset.localExperts %}
             <div class="multiple-item-list">
-              <a href="{{ expert.bioUrl }}" target="_blank">{{ expert.fullName }}</a>
+              <a href="{{ expert.bioUrl }}" >{{ expert.fullName }}</a>
             </div>
          {% endfor %}
          {% endif %}
       </dd>
       </dl>
-
 
     {% if dataset.subjectOfStudy is not empty %}
      <dt>Subject of Study</dt>
@@ -178,7 +220,6 @@ $(function () {
        {% endfor %}
       </dd>
      {% endif %}
-
      
     {% if dataset.subjectDomains is not empty %}
      <dt>Subject Domain</dt>
@@ -187,22 +228,21 @@ $(function () {
        {% endfor %}
       </dd>
      {% endif %}
-
      
      {% if (dataset.subjectPopulationAges.count > 0) %}
         <dt>Population Age</dt>
           <dd>{% for ageGroup in dataset.subjectPopulationAges %}
            <div class="multiple-item-list">{{ ageGroup.getDisplayName }}</div>
            {% endfor %}</dd>
-     {% endif %}
-     
+       {% endif %}
+
      {% if (dataset.subjectGenders is not empty ) %}
         <dt>Subject Gender</dt>
           <dd>{% for gender in dataset.subjectGenders %}
            <div class="multiple-item-list">{{ gender.getDisplayName }}</div>
            {% endfor %}</dd>
-     {% endif %}
-
+       {% endif %}
+     
      {% if (dataset.subjectSexes is not empty ) %}
         <dt>Subject Sex</dt>
           <dd>{% for sex in dataset.subjectSexes %}
@@ -216,7 +256,7 @@ $(function () {
           <div class="multiple-item-list"><a href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}">{{ keyword.getDisplayName }}</a></div>
           {% endfor %}
           </dd>
-          {% endif %}
+        {% endif %}
      
      </dl>
     </div>
@@ -228,7 +268,7 @@ $(function () {
            {% for location in dataset.dataLocations %}
               <div class="multiple-item-list">
                 {% if location.getDataAccessUrl is not null %}
-                  <a class="btn btn-primary" target="_blank" href="{{ location.getDataAccessUrl }}" onclick="trackOutboundLink('{{ location.getDataAccessUrl }}', '{{ dataset.title }} (via {{ location.getDataLocation }})');">Access via {{ location.getDataLocation }}</a>
+                  <a class="btn btn-primary"  href="{{ location.getDataAccessUrl }}" onclick="trackOutboundLink('{{ location.getDataAccessUrl }}', '{{ dataset.title }} (via {{ location.getDataLocation }})');">Access via {{ location.getDataLocation }}</a>
                 {% endif %}
                 <p class="data-location-description"><span class="data-location-title"></span> <span class="data-location-content">{{ location.getLocationContent }}</span>
                {% if location.getAccessionNumber %}
@@ -257,7 +297,7 @@ $(function () {
       {% for pub in dataset.publications %}
         <div class="assoc-publication multiple-item-list">
          {% if pub.url is not null %}
-           <a href="{{ pub.url }}" target="_blank">{{ pub.citation|raw }}</a>
+           <a href="{{ pub.url }}" >{{ pub.citation|raw }}</a>
          {% else %}
            {{ pub.citation }}
          {% endif %}
@@ -265,11 +305,6 @@ $(function () {
       {% endfor %}
       </dd>
       {% endif %}
-
-       {% if dataset.pubmedSearch is not empty %}
-       <dt>PubMed Search</dt>
-        <dd><a target="_blank" href="{{ dataset.pubmedSearch }}">View articles which use this dataset</a></dd>
-       {% endif %}
 
       {% if (dataset.dataTypes.count > 0) %}
        <dt>Data Type</dt>
@@ -279,18 +314,18 @@ $(function () {
       {% endfor %}
       </dd>
       {% endif %}
-   
+
       {% if (dataset.relatedEquipment.count > 0) %}
        <dt>Equipment Used</dt>
        <dd id="equipment-used">
       {% for equip in dataset.relatedEquipment %}
         <div class="multiple-item-list">
-          {% if equip.equipmentUrl %}
-            <a href="{{ equip.equipmentUrl }}" target="_blank">{{ equip.getDisplayName }}</a>
+          {% if equip.equipmentUrl is not empty %}
+            <a href="{{ equip.equipmentUrl }}" >{{ equip.getDisplayName }}</a>
           {% else %}
             {{ equip.getDisplayName }}
           {% endif %}
-          {% if equip.equipmentDescription %}
+          {% if equip.equipmentDescription is not empty %}
             <p class="related-dataset-note">{{ equip.equipmentDescription }}</p>
           {% endif %}
         </div>
@@ -303,19 +338,19 @@ $(function () {
        <dd id="software-used">
       {% for sw in dataset.relatedSoftware %}
         <div class="multiple-item-list">
-          {% if sw.softwareUrl %}
-            <a href="{{sw.softwareUrl}}" target="_blank">{{ sw.getDisplayName }}</a>
+          {% if sw.softwareUrl is not empty %}
+            <a href="{{sw.softwareUrl}}" >{{ sw.getDisplayName }}</a>
           {% else %}
             {{ sw.getDisplayName }}
           {% endif %}
-          {% if sw.softwareDescription %}
+          {% if sw.softwareDescription is not empty %}
             <p class="related-dataset-note">{{ sw.softwareDescription }}</p>
           {% endif %}
         </div>
       {% endfor %}
       </dd>
       {% endif %}
-
+   
       {% if (dataset.studyTypes.count > 0) %}
        <dt>Study Type</dt>
        <dd>
@@ -333,7 +368,7 @@ $(function () {
         {% endfor %}
        </dd>
       {% endif %}
-
+      
       {% if (dataset.dataCollectionInstruments.count > 0) %}
        <dt>Data Collection Instruments</dt>
          <dd>
@@ -342,7 +377,7 @@ $(function () {
       {% endfor %}
          </dd>
       {% endif %}
-      
+
       {% if (dataset.datasetSize is not null) %}
        <dt>Dataset Size</dt>
          <dd>{{ dataset.datasetSize }}</dd>
@@ -352,34 +387,22 @@ $(function () {
    </div>
    <div class="row" id="dataset-detail-relatedpanel">
      <dl>
-       {% if (dataset.awards.count > 0) %}
-       <dt>Grant Support</dt>
-       <dd id="grant-support">
-        {% for grant in dataset.awards %}
-          {% if grant.awardUrl is not empty %}
-           <div class="grant-item multiple-item-list">
-            <a href="{{ grant.awardUrl }}" target="_blank">{{ grant.award }}/{{ grant.awardFunder }}</a>
-           </div>
-          {% else %}
-           <div class="grant-item multiple-item-list">
-            {{ grant.award }}/{{ grant.awardFunder }}
-           </div>
-          {% endif %} 
-        {% endfor %}
-       </dd>
+       {% if dataset.pubmedSearch is not empty %}
+       <dt>PubMed Search</dt>
+        <dd><a  href="{{ dataset.pubmedSearch }}">View articles which use this dataset</a></dd>
        {% endif %}
-                  
+
        {% if (dataset.otherResources.count > 0) %}
          <dt>Other Resources</dt>
            <dd id="other-resources">
            {% for resource in dataset.otherResources %}
               <div class="other-resource multiple-item-list">
-               <a class="other-resource-link" target="_blank" href="{{ resource.getResourceUrl }}">{{ resource.getResourceName }}</a><p class="other-resource-description">{{ resource.getResourceDescription }}</p>
+               <a class="other-resource-link"  href="{{ resource.getResourceUrl }}">{{ resource.getResourceName }}</a><p class="other-resource-description">{{ resource.getResourceDescription }}</p>
               </div>
            {% endfor %} 
            </dd>       
        {% endif %}
-
+       
        {% if (dataset.relatedDatasets.count > 0) %}
          {{ render(controller('AppBundle:RelatedDataset:relatedDataset',{'relatedDatasets':dataset.relatedDatasets})) }}
        {% endif %}

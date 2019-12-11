@@ -105,3 +105,18 @@ div.footer-wrapper a {
   margin-top: -3px;
   padding-left: 4px;
 }
+
+/* Detailed Record View */
+.msk-author {
+}
+
+.internal-dataset-badge {
+  background: rgb(255,64,13);
+  color: #ffffff;
+
+}
+
+.msk-author-note {
+  font-size:.75em;
+  display:block;
+}
