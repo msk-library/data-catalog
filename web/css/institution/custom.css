@@ -108,13 +108,15 @@ div.footer-wrapper a {
 
 /* Detailed Record View */
 .msk-author {
-  background-color: aliceblue;
+}
+.msk-author-note {
+  font-size:.75em;
+  display:block;
 }
 
 .internal-dataset-badge {
   background: rgb(255,64,13);
   color: #ffffff;
-
 }
 
 /* About Page */
