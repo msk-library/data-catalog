@@ -109,6 +109,10 @@ div.footer-wrapper a {
 /* Detailed Record View */
 .msk-author {
 }
+.msk-author-note {
+  font-size:.75em;
+  display:block;
+}
 
 .msk-author-note {
   font-size:.75em;
@@ -129,4 +133,44 @@ div.footer-wrapper a {
 .show_less {
   font-weight: 700;
   cursor: pointer;
+}
+
+/* About Page */
+
+.about-page-column {
+  padding-top:2em;
+  height: 1700px;
+}
+.about-page-section {
+  margin-bottom: 7em;
+}
+
+.team-bio-section {
+  margin-bottom: 5em;
+  overflow: hidden;
+}
+
+.team-bio-picture {
+  width: 300px;
+  float: left;
+  margin-right: 2em;
+}
+
+#about-page-nav {
+  padding: .25em;
+  margin-top: 1em;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
+.about-anchor-link {
+  vertical-align: middle;
+  display: inline-block;
+  font-weight: bold;
+  font-size: .9em;
+  text-transform: uppercase;
+  color: #717171;
+  padding: 1em;
+  border-left: 3px solid rgb(255,64,13);
+  letter-spacing: 0.5px;
 }
