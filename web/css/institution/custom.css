@@ -114,9 +114,25 @@ div.footer-wrapper a {
   display:block;
 }
 
+.msk-author-note {
+  font-size:.75em;
+  display:block;
+}
+
 .internal-dataset-badge {
   background: rgb(255,64,13);
   color: #ffffff;
+}
+
+/* Facets */
+.show_more {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.show_less {
+  font-weight: 700;
+  cursor: pointer;
 }
 
 /* About Page */

@@ -26,6 +26,26 @@ jQuery(function($) {
   $('#collapsed-areas, #collapsed-authors').on('hidden.bs.collapse', function() {
       $(this).siblings('a.collapsed-toggle').text('See more...');
   });
+
+  // Only show first n number (max+ 1) of results for each facet on results page
+  $('ul.facets-list').each(function(){
+    var max = 4;
+    if ($(this).find('li').length > max+1) {
+        $(this).find('li:gt('+max+')').hide().end().append('<li class="more_facets"><span class="show_more">Show More</span></li>');
+    };
+  });
+
+  $('.more_facets').click( function(){
+    var max = 4;
+    $(this).siblings(':gt('+max+')').toggle();
+    if ( $(this).is(':contains("More") ')) {
+        $(this).html('<span class="show_less">Show Less</span>');
+    } else {
+        $(this).html('<span class="show_more">Show More</span>');
+    };
+});
+
+
  });
 
 });
