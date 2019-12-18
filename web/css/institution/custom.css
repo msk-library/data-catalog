@@ -67,6 +67,11 @@ form.input-group {
   width: 100%;
 }
 
+/*Feedback */
+.btn-warning {
+  margin-right: 20px;
+}
+
 /* Footer */
 
 /* the submit button */
