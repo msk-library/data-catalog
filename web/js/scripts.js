@@ -43,8 +43,10 @@ jQuery(function($) {
     } else {
         $(this).html('<span class="show_more">Show More</span>');
     };
-});
+  });
 
+  //hide geographic coverage facet for now
+  $("h5:contains('Geographic')").parent().hide();
 
  });
 
