@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
@@ -39,16 +40,31 @@ class Publication {
   protected $id;
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Citation cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string",length=512)
    */
   protected $citation;
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="URL cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string",length=1028, nullable=true)
    */
   protected $url;
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="DOI cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string",length=128, nullable=true)
    */
   protected $doi;
