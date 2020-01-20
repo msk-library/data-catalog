@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
@@ -36,16 +37,31 @@ class DataLocation {
   protected $id;
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Data location title cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string",length=256)
    */
   protected $data_location;
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Dataset location content cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string",length=1028,nullable=true)
    */
   protected $location_content;
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Enter a valid URL without html or script tags"
+   * )
    * @ORM\Column(type="string",length=1028, nullable=true)
    */
   protected $data_access_url;
@@ -92,7 +108,7 @@ class DataLocation {
      */
     public function setDataAccessUrl($dataAccessUrl)
     {
-        $this->data_access_url = $dataAccessUrl;
+        $this->data_access_url = strip_tags($dataAccessUrl);
 
         return $this;
     }
@@ -161,7 +177,7 @@ class DataLocation {
      */
     public function setDataLocation($dataLocation)
     {
-        $this->data_location = $dataLocation;
+        $this->data_location = strip_tags($dataLocation);
 
         return $this;
     }
@@ -184,7 +200,7 @@ class DataLocation {
      */
     public function setLocationContent($locationContent)
     {
-        $this->location_content = $locationContent;
+        $this->location_content = strip_tags($locationContent);
 
         return $this;
     }
