@@ -133,7 +133,7 @@ class Person {
      */
     public function setFullName($fullName)
     {
-        $this->full_name = $fullName;
+        $this->full_name = strip_tags($fullName);
 
         return $this;
     }
@@ -156,7 +156,7 @@ class Person {
      */
     public function setLastName($lastName)
     {
-        $this->last_name = $lastName;
+        $this->last_name = strip_tags($lastName);
 
         return $this;
     }
@@ -179,7 +179,7 @@ class Person {
      */
     public function setFirstName($firstName)
     {
-        $this->first_name = $firstName;
+        $this->first_name = strip_tags($firstName);
 
         return $this;
     }
@@ -225,7 +225,7 @@ class Person {
      */
     public function setBioUrl($bioUrl)
     {
-        $this->bio_url = $bioUrl;
+        $this->bio_url = strip_tags($bioUrl);
 
         return $this;
     }
@@ -249,7 +249,7 @@ class Person {
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = strip_tags($email);
 
         return $this;
     }
