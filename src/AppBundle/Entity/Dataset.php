@@ -47,6 +47,11 @@ class Dataset implements JsonSerializable {
 
   /**
    * @Assert\NotBlank()
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Title cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string", length=255, unique=true)
    */
   protected $title;
@@ -64,6 +69,11 @@ class Dataset implements JsonSerializable {
 
   /**
    * @Assert\NotBlank()
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Description cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string", length=3000)
    */
   protected $description;
@@ -94,12 +104,22 @@ class Dataset implements JsonSerializable {
 
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Access instructions cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string", length=3000, nullable=true)
    */
   protected $access_instructions;
 
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="Licensing details cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string", length=3000, nullable=true)
    */
   protected $licensing_details;
@@ -167,6 +187,11 @@ class Dataset implements JsonSerializable {
 
 
   /**
+   * @Assert\Regex(
+   *     pattern="/<[a-z][\s\S]*>/i",
+   *     match=false,
+   *     message="This field cannot contain HTML or script tags"
+   * )
    * @ORM\Column(type="string", length=3000, nullable=true)
    */
   protected $data_location_description;
