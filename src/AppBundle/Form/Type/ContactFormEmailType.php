@@ -35,34 +35,39 @@ class ContactFormEmailType extends AbstractType {
    * @param array $options
    */
   public function buildForm(FormBuilderInterface $builder, array $options) {
-    $builder->add('employee_id', 'text', array(
-      'label'=> 'Employee ID',
+    $builder->add('first_name', 'text', array(
+      'label'=> 'First Name',
+      'label_attr'=>array,
+    ));
+     $builder->add('last_name', 'text', array(
+      'label'=> 'Last Name',
+      'label_attr'=>array,
+    ));
+    $builder->add('affiliation', 'text', array(
+      'label'=>'Affiliation',
+      'label_attr'=>array
+    ));
+    $builder->add('department', 'text', array(
+      'label'=> 'Department',
       'label_attr'=>array('class'=>'no-asterisk'),
     ));
-    $builder->add('full_name', 'text', array(
-      'label_attr'=>array('class'=>'no-asterisk')));
     $builder->add('email_address', 'email', array(
-      'label_attr'=>array('class'=>'no-asterisk')));
-    $builder->add('affiliation', 'choice', array(
-      'label'=>'Institutional Affiliation',
-      'label_attr'=>array('class'=>'no-asterisk'),
-      'choices' => $this->affiliationOptions
+      'label'=> 'E-mail',
+      'label_attr'=>array
     ));
        
     $builder->add('reason', 'choice', array(
-      'expanded'=>true,
-      'label_attr'=>array('class'=>'no-asterisk'),
+      'label_attr'=>array,
       'choices' =>array(
         'Volunteer as a local expert' => 'Volunteer as a local expert',
         'Suggest a new dataset' => 'Suggest a new dataset',
         'Request uploading of dataset' => 'Request uploading of your dataset(s)',
         'General inquiry'    => 'General inquiry or comments',
-      ),
-      'multiple'=>false)
-    );
+      )
+    ));
     $builder->add('message_body', 'textarea', array(
       'attr' => array('rows'=>'5'),
-      'label_attr'=>array('class'=>'no-asterisk'),
+      'label_attr'=>array,
       'label'=>'Please provide some details about your question/comment',
     ));
     $builder->add('checker', 'text', array(
