@@ -41,7 +41,7 @@ class ContactFormEmailType extends AbstractType {
     ));
      $builder->add('last_name', 'text', array(
       'label'=> 'Last Name',
-      'label_attr'=>array('class'=>''),
+      'label_attr'=>array(),
     ));
     $builder->add('affiliation', 'text', array(
       'label'=>'Affiliation',
