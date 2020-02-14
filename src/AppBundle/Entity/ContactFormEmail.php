@@ -148,6 +148,15 @@ class ContactFormEmail {
         return $this->last_name;
     }
   
+
+    /** Get full_name
+    *
+    *  @return string
+    */
+    public function getFullName()
+    {
+        return ($this->first_name . " " . $this->last_name);
+    }
    
     /**
      * Set affiliation
