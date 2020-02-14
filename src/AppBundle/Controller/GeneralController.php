@@ -118,6 +118,15 @@ class GeneralController extends Controller
     $em = $this->getDoctrine()->getManager();
     $form = $this->createForm(new \AppBundle\Form\Type\ContactFormEmailType($affiliationOptions), $contactFormEmail);
     $form->handleRequest($request);
+
+     //Check if there is an institutional email feedback template to render
+      if ($this->get('templating')->exists('institution/feedback_email.html.twig')) {
+        $feedbackTemplate = 'institution/feedback_email.html.twig'; 
+      }
+      else {
+        $feedbackTemplate = 'default/feedback_email.html.twig';
+      }
+
     if ($form->isValid()) {
       $email = $form->getData();
 
@@ -131,8 +140,7 @@ class GeneralController extends Controller
         ->setFrom($emailFrom)
         ->setTo($emailTo)
         ->setBody(
-          $this->renderView(
-            'default/feedback_email.html.twig',
+          $this->renderView($feedbackTemplate,
             array('msg' => $email)
           ),
           'text/html'
