@@ -37,15 +37,15 @@ class ContactFormEmailType extends AbstractType {
   public function buildForm(FormBuilderInterface $builder, array $options) {
     $builder->add('first_name', 'text', array(
       'label'=> 'First Name',
-      'label_attr'=>array,
+      'label_attr'=>array(),
     ));
      $builder->add('last_name', 'text', array(
       'label'=> 'Last Name',
-      'label_attr'=>array,
+      'label_attr'=>array('class'=>''),
     ));
     $builder->add('affiliation', 'text', array(
       'label'=>'Affiliation',
-      'label_attr'=>array
+      'label_attr'=>array(),
     ));
     $builder->add('department', 'text', array(
       'label'=> 'Department',
@@ -53,11 +53,11 @@ class ContactFormEmailType extends AbstractType {
     ));
     $builder->add('email_address', 'email', array(
       'label'=> 'E-mail',
-      'label_attr'=>array
+      'label_attr'=>array(),
     ));
        
     $builder->add('reason', 'choice', array(
-      'label_attr'=>array,
+      'label_attr'=>array(),
       'choices' =>array(
         'Volunteer as a local expert' => 'Volunteer as a local expert',
         'Suggest a new dataset' => 'Suggest a new dataset',
@@ -67,7 +67,7 @@ class ContactFormEmailType extends AbstractType {
     ));
     $builder->add('message_body', 'textarea', array(
       'attr' => array('rows'=>'5'),
-      'label_attr'=>array,
+      'label_attr'=>array(),
       'label'=>'Please provide some details about your question/comment',
     ));
     $builder->add('checker', 'text', array(
