@@ -136,7 +136,7 @@ class GeneralController extends Controller
 
       $mailer = $this->get('mailer');
       $message = $mailer->createMessage()
-        ->setSubject('New Feedback about Data Catalog')
+        ->setSubject('New Contact Us Response for Data Catalog')
         ->setFrom($emailFrom)
         ->setTo($emailTo)
         ->setBody(
