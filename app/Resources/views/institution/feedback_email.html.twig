@@ -1,0 +1,21 @@
+<html>
+<body>
+<p>We have received the following new message from the Data Catalog 'Contact Us' form.<p>
+<p>
+<b>Name:</b> {{ msg.getFullName }}
+</p>
+<p>
+<b>Affiliation:</b> {{ msg.getAffiliation }}
+</p>
+<p>
+<b>Department:</b> {{ msg.getDepartment }}
+</p>
+<p>
+<b>Email:</b> {{ msg.getEmailAddress }}
+</p>
+<p>
+<b>Reason for contacting us:</b> {{ msg.getReason }}
+</p>
+<p>{{ msg.getMessageBody }}</p>
+</body>
+</html>
