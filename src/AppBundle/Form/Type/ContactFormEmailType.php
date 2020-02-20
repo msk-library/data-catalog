@@ -59,9 +59,9 @@ class ContactFormEmailType extends AbstractType {
     $builder->add('reason', 'choice', array(
       'label_attr'=>array(),
       'choices' =>array(
-        'Volunteer as a local expert' => 'Volunteer as a local expert',
-        'Suggest a new dataset' => 'Suggest a new dataset',
-        'Request uploading of dataset' => 'Request uploading of your dataset(s)',
+        'Suggest a dataset record for inclusion' => 'Suggest a dataset record for inclusion',
+        'Request a correction to a dataset record' => 'Request a correction to a dataset record',
+        'Request a presentation' => 'Request a presentation',
         'General inquiry'    => 'General inquiry or comments',
       )
     ));
