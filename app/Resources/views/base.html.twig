@@ -115,6 +115,44 @@
                   <button id="keyword-search-submit" class="btn btn-default" type="submit">Go!</button>
                 </span>
             </form>
+            <!-- Trigger the modal with a link -->
+            <a data-toggle="modal" href="#myModal">Search Tips</a>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+    
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Search Tips</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                        <ul>
+    	                <li><b>Default Boolean Operator:</b> by default terms in a search string will be connected by the AND operator, EXAMPLE: searching genomic melanoma will produce the same results as genomic AND melanoma. </li> &nbsp;
+
+		                <li><b>AND, OR, NOT:</b> you can combine terms in a search with the boolean operators AND (to add specificity), OR (to broaden), or NOT (to eliminate a term), the operators must be capitalized (all other search terms are not case specific).</li> &nbsp;
+
+		                <li><b>Wild Card:</b> Add wild cards such as * (open-ended wildcard) and ? (single character) to truncate terms, EXAMPLE: searching gen* shows results for 'gene', 'genetic', 'genomic, etc., searching gene? returns results for 'gene' or 'genes' but not for 'genome'. </li> &nbsp;
+
+		                <li><b>Phrase Searching:</b> encapulate your search in quotation marks "" to search for an exact phrase, EXAMPLE: "transcription factors" returns results for cases when transcription is immediately followed by factors. </li> &nbsp;
+
+		                <li><b>Diacritics:</b> Words containing diacritics translate those characters to non-diacritic form, EXAMPLE: massague returns results for Massague&#769. </li> &nbsp;
+
+		                <li><b>Filters:</b> in left panel, remove filter by clicking on the term at the top of the page. </li> &nbsp;
+
+		                <li><b>MSK Datasets Only:</b> limits to internal datasets. </li> &nbsp;
+                        </ul>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+            </div>
           </div>
           <div class="pull-right">
               <button id="feedback" class="btn btn-warning" onclick="window.open('https://www.surveymonkey.com/r/dataset_feedback','popup','width=600,height=600','centerscreen'); return false;"type="button">Feedback</button>
