@@ -1,8 +1,5 @@
 {% extends 'base.html.twig' %}
 {% from 'default/_JSONLD_output.html.twig' import JSONLD_output %}
-
-
-
 {% block page_scripts %}
 <script>
 /**
@@ -86,34 +83,23 @@ $(function () {
    </a>
   </div>
   {% endif %}
-     <h1 class="dataset-detail-maintitle">{{ dataset.title }} 
-       {% if dataset.published == false %}<small>[unpublished]</small>{%endif%}
-       {% if dataset.archived == true %}<small>[archived]</small>{%endif%}
-     </h1>
-      <span class="dataset-detail-alttitle">
-      {% if dataset.datasetAlternateTitles.count > 0 %}
-       <h5>Alternate Titles(s): 
-        {% for title in dataset.datasetAlternateTitles %}
-        {{ title.getDisplayName|trim }}{% if not loop.last %}, {% endif %}
-        {% endfor %}
-        </h5>
-      {% endif %}
-      <p>
-          <span class="dataset-detail-id">UID: {{ dataset.id }}</span>
-      </p>
-			 {% if dataset.getAuthorships is not empty %}
+ 	 {% if dataset.getAuthorships is not empty %}
 				<div class="dataset-authors-section">
 					<span class="dataset-detail-authors">Author(s):
 						{% set correspondingAuthorExists = false %}
+            {% set hasMskAuthor = false %}
 						{% for author in dataset.getAuthorships %}
 							{% set popoverContent = '' %}
 							{% set authorNote = '' %}
 							{% set authorClass = '' %}
 							{% if author.getPerson.getBioUrl %}
-								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getBioUrl ~ '" >View profile</a></p>' %}
+                {% set hasMskAuthor = true %}
+                {% set authorClass = authorClass ~ ' msk-author' %}
+                {% set authorNote = authorNote ~ '*' %}
+								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getBioUrl ~ '" >Synapse</a></p>' %}
 							{% endif %}
 							{% if author.getPerson.getOrcidId %}
-								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getOrcidId ~ '" >ORCID Profile</a></p>' %}
+								{% set popoverContent = popoverContent ~ '<p><a href="' ~ author.getPerson.getOrcidId ~ '" >ORCID</a></p>' %}
 							{% endif %}
 							{% if author.getPerson.getDatasetAssociations|length > 1 %}
 								{% set popoverContent = popoverContent ~ '<p><a href="/search?keyword=authors:%22' ~ author.getPerson.getFullName ~ '%22" >View other datasets</a></p>' %}
@@ -121,7 +107,6 @@ $(function () {
 							{% if author.isCorrespondingAuthor %}
 								{% set correspondingAuthorExists = true %}
 								{% set authorClass = authorClass ~ ' corresponding-author' %}
-								{% set authorNote = authorNote ~ '*' %}
 							{% endif %}
 
 							{% if popoverContent %}<a tabindex="0" class="author-name" role="button" data-toggle="popover" title="{{ author.getPerson.getFullName }}" data-content="{{ popoverContent }}">{% endif %}<span class="{{ authorClass }}">{{ author.getPerson.getFullName }}</span><span class="author-note">{{ authorNote }}</span>{% if popoverContent %}</a>{% endif %}{% if not loop.last %}, {% endif %}
@@ -129,8 +114,8 @@ $(function () {
 						{% endfor %}
 						
 					</span>
-					{% if correspondingAuthorExists %}
-						 <span class="corresponding-author-note">* Corresponding Author</span>
+					{% if hasMskAuthor %}
+						 <span class="msk-author-note">* MSK affiliated</span>
 					{% endif %}
 				</div>
 			{% endif %}
