@@ -148,8 +148,10 @@ $(function () {
       {% endif %}
         {% if popoverContent %}<a tabindex="0" class="publisher-link" role="button" data-toggle="popover" title="{{ publisher.publisherName }}" data-content="{{ popoverContent }}">{% endif %}{{ publisher.publisherName }}{% if popoverContent %}</a>{% endif %}{% if not loop.last %}, {% endif %}
        {% endfor %}
+
       {% endif %}
       </span>
+      <p></p>
   </div>
 </div>
 <div class="row">
