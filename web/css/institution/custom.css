@@ -132,6 +132,10 @@ div.footer-wrapper a {
   color: #ffffff;
 }
 
+.publishers-list {
+  color: gray;
+}
+
 /* Facets */
 .show_more {
   font-weight: 700;
