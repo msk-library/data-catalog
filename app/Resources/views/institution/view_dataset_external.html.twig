@@ -83,6 +83,22 @@ $(function () {
    </a>
   </div>
   {% endif %}
+  <h1 class="dataset-detail-maintitle">{{ dataset.title }} 
+       {% if dataset.published == false %}<small>[unpublished]</small>{%endif%}
+       {% if dataset.archived == true %}<small>[archived]</small>{%endif%}
+     </h1>
+      <span class="dataset-detail-alttitle">
+				{% if dataset.datasetAlternateTitles.count > 0 %}
+				 <h5>Alternate Titles(s): 
+					{% for title in dataset.datasetAlternateTitles %}
+					{{ title.getDisplayName|trim }}{% if not loop.last %}, {% endif %}
+					{% endfor %}
+					</h5>
+				{% endif %}
+			</span>
+			<p>
+				<span class="dataset-detail-id">UID: {{ dataset.id }}</span>
+			</p>
  	 {% if dataset.getAuthorships is not empty %}
 				<div class="dataset-authors-section">
 					<span class="dataset-detail-authors">Author(s):
@@ -207,7 +223,7 @@ $(function () {
      {% endif %}
      
     {% if dataset.subjectDomains is not empty %}
-     <dt>Subject Domain</dt>
+     <dt>Subject</dt>
       <dd>{% for domain in dataset.subjectDomains %}
          <div class="multiple-item-list"><a href="/search?keyword=subject_domain:{{ domain.getDisplayName }}">{{ domain.getDisplayName }}</a></div>
        {% endfor %}
@@ -236,7 +252,7 @@ $(function () {
        {% endif %}
 
      {% if (dataset.subjectKeywords.count > 0) %}
-        <dt>Keywords</dt>
+        <dt>OncoTree Cancer Tag</dt>
          <dd>{% for keyword in dataset.subjectKeywords %}
           <div class="multiple-item-list"><a href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}">{{ keyword.getDisplayName }}</a></div>
           {% endfor %}
