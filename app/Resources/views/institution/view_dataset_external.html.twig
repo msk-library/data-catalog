@@ -223,7 +223,7 @@ $(function () {
      {% endif %}
      
     {% if dataset.subjectDomains is not empty %}
-     <dt>Subject</dt>
+     <dt>Subject(s)</dt>
       <dd>{% for domain in dataset.subjectDomains %}
          <div class="multiple-item-list"><a href="/search?keyword=subject_domain:{{ domain.getDisplayName }}">{{ domain.getDisplayName }}</a></div>
        {% endfor %}
@@ -252,7 +252,7 @@ $(function () {
        {% endif %}
 
      {% if (dataset.subjectKeywords.count > 0) %}
-        <dt>OncoTree Cancer Tag</dt>
+        <dt>OncoTree Cancer Tag(s)</dt>
          <dd>{% for keyword in dataset.subjectKeywords %}
           <div class="multiple-item-list"><a href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}">{{ keyword.getDisplayName }}</a></div>
           {% endfor %}
@@ -371,7 +371,7 @@ $(function () {
       {% endif %}
       
       {% if (dataset.dataCollectionInstruments.count > 0) %}
-       <dt>Data Tools</dt>
+       <dt>Data Tool(s)</dt>
          <dd>
       {% for instrument in dataset.dataCollectionInstruments %}
         <div class="multiple-item-list">{{ instrument.getDisplayName }}</div>
