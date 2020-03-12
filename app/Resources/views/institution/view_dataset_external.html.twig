@@ -138,6 +138,18 @@ $(function () {
 		</span>
 
     </p>
+     {% if dataset.publishers is not empty %}
+     <span class="publishers-list">Publisher(s):
+         {% for publisher in dataset.publishers %}
+      {% if publisher.publisherUrl %}
+        {% set popoverContent = "<p><a href='#{ publisher.publisherUrl }' target='_blank'>View publisher website</a></p><p><a href='/search?keyword=publishers:#{ publisher.publisherName }' target='_blank'>View other datasets</a></p>" %}
+      {% else %}
+        {% set popoverContent = "<p><a href='/search?keyword=publishers:#{ publisher.publisherName }' target='_blank'>View other datasets</a></p>" %}
+      {% endif %}
+        {% if popoverContent %}<a tabindex="0" class="publisher-link" role="button" data-toggle="popover" title="{{ publisher.publisherName }}" data-content="{{ popoverContent }}">{% endif %}{{ publisher.publisherName }}{% if popoverContent %}</a>{% endif %}{% if not loop.last %}, {% endif %}
+       {% endfor %}
+      {% endif %}
+      </span>
   </div>
 </div>
 <div class="row">
@@ -145,21 +157,7 @@ $(function () {
    <dl>
      <dt>Description</dt>
        <dd>{{ dataset.description|raw }}</dd>
-     {% if dataset.publishers is not empty %}
-     <dt>Publisher</dt>
-       <dd class="publishers-list">
-         {% for publisher in dataset.publishers %}
-       <div class="multiple-item-list">
-      {% if publisher.publisherUrl %}
-        {% set popoverContent = "<p><a href='#{ publisher.publisherUrl }' target='_blank'>View publisher website</a></p><p><a href='/search?keyword=publishers:#{ publisher.publisherName }' target='_blank'>View other datasets</a></p>" %}
-      {% else %}
-        {% set popoverContent = "<p><a href='/search?keyword=publishers:#{ publisher.publisherName }' target='_blank'>View other datasets</a></p>" %}
-      {% endif %}
-        <a tabindex="0" class="publisher-link" role="button" data-toggle="popover" title="{{ publisher.publisherName }}" data-content="{{ popoverContent }}">{{ publisher.publisherName }}</a>
-       </div>
-       {% endfor %}
-        </dd>
-      {% endif %}
+
      
       {% if dataset.subjectStartDate is not empty and dataset.subjectStartDate == dataset.subjectEndDate %}
       <dt>Timeframe</dt>
