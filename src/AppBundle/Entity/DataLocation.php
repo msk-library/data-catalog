@@ -96,7 +96,7 @@ class DataLocation {
    * @return string
    */
   public function getDisplayName() {
-    return $this->data_location;
+    return $this->data_access_url;
   }
 
 
