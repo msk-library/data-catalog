@@ -56,6 +56,10 @@ class SearchResults {
     'authors' => 'Author',
     'Subject of Study' => 'subject_of_study',
     'subject_of_study' => 'Subject of Study',
+    'Analytical/Collection Software' => 'related_software',
+    'related_software' => 'Analytical/Collection Software',
+    'Data Tools' => 'collection_standards',
+    'collection_standards' => 'Data Tools',
 
   );
 
