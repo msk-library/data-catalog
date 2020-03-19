@@ -200,7 +200,7 @@
        {% set facetSection = facetSection|merge([facet]) %}
      {% endif %}
     {% endfor %}
-    {% if facetSection|length > 0 %}
+    {% if facetSection|length > 2 %}
      <div class="facet-section">
       <h5 class="facet-header">{{ category }}</h5>
         <ul class="facets-list list-unstyled">
