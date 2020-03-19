@@ -50,6 +50,13 @@ class SearchResults {
     'access_restrictions_fq' => 'Access Restrictions',
     'publishers' => 'Publishers',
     'Publishers' => 'publishers',
+    'OncoTree Cancer Tag' => 'subject_keywords',
+    'subject_keywords' => 'OncoTree Cancer Tag',
+    'Author' => 'authors',
+    'authors' => 'Author',
+    'Subject of Study' => 'subject_of_study',
+    'subject_of_study' => 'Subject of Study',
+
   );
 
 
