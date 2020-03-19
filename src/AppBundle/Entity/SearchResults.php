@@ -40,14 +40,8 @@ class SearchResults {
   public $facetMappings = array(
     'Subject' => 'subject_domain_fq',
     'Origin' => 'origin_fq',
-    'Timeframe' => 'dataset_years',
-    'Geographic Coverage' => 'subject_geographic_area_fq',
-    'Access Restrictions' => 'access_restrictions_fq',
     'subject_domain_fq' => 'Subject',
     'origin_fq' => 'Origin',
-    'dataset_years' => 'Dataset Timeframes',
-    'subject_geographic_area_fq' => 'Geographic Coverage',
-    'access_restrictions_fq' => 'Access Restrictions',
     'publishers' => 'Publisher',
     'Publisher' => 'publishers',
     'OncoTree Cancer Tag' => 'subject_keywords',
@@ -60,6 +54,16 @@ class SearchResults {
     'related_software' => 'Analytical/Collection Software',
     'Data Tools' => 'collection_standards',
     'collection_standards' => 'Data Tools',
+
+    /* Unused facets
+    'Timeframe' => 'dataset_years',
+    'Geographic Coverage' => 'subject_geographic_area_fq',
+    'Access Restrictions' => 'access_restrictions_fq',
+    'dataset_years' => 'Dataset Timeframes',
+    'subject_geographic_area_fq' => 'Geographic Coverage',
+    'access_restrictions_fq' => 'Access Restrictions',
+
+    */
 
   );
 
@@ -112,6 +116,7 @@ class SearchResults {
         );
       }
     }
+    /*
     $timeframes = $translatedFacets['Timeframe'];
     
     $begin  = substr($timeframes[1]['facetItem'], 0, 4);
@@ -123,7 +128,7 @@ class SearchResults {
     $translatedFacets['Timeframe'][2]['facetItem'] = $second . ' - ' . ($third-1);
     $translatedFacets['Timeframe'][3]['facetItem'] = $third . ' - ' . ($fourth-1);
     $translatedFacets['Timeframe'][4]['facetItem'] = $fourth . ' - Present';
-     
+    */
     return $translatedFacets;
   }
 
