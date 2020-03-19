@@ -38,16 +38,18 @@ class SearchResults {
    * Maps Solr facet names to user-friendly facet names
    */
   public $facetMappings = array(
-    'Subject Domain' => 'subject_domain_fq',
+    'Subject' => 'subject_domain_fq',
     'Origin' => 'origin_fq',
     'Timeframe' => 'dataset_years',
     'Geographic Coverage' => 'subject_geographic_area_fq',
     'Access Restrictions' => 'access_restrictions_fq',
-    'subject_domain_fq' => 'Subject Domain',
+    'subject_domain_fq' => 'Subject',
     'origin_fq' => 'Origin',
     'dataset_years' => 'Dataset Timeframes',
     'subject_geographic_area_fq' => 'Geographic Coverage',
     'access_restrictions_fq' => 'Access Restrictions',
+    'publishers' => 'Publishers',
+    'Publishers' => 'publishers',
   );
 
 
