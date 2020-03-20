@@ -1871,8 +1871,9 @@ class Dataset implements JsonSerializable {
          $other_resource_descriptions[]=$resource->getResourceDescription(); 
        }
        foreach ($this->data_locations as $loc) { 
-         $data_locations[]=$loc->getDataAccessUrl(); 
-         $data_location_contents[]=$loc->getLocationContent(); 
+         $data_locations[]=$loc->getDisplayName(); 
+         $data_location_contents[]=$loc->getLocationContent();
+         $data_location_urls[]=$loc->getDataAccessUrl(); 
          $accession_numbers[]=$loc->getAccessionNumber(); 
        }
        foreach ($this->publications as $pub) { $publications[]=$pub->getDisplayName(); }
