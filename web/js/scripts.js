@@ -39,7 +39,7 @@ jQuery(function($) {
     var max = 4;
     $(this).siblings(':gt('+max+')').toggle();
     if ( $(this).is(':contains("More") ')) {
-        $(this).html('<span class="show_less">Show Less</span>');
+        $(this).html('<span class="show_less">Show Less&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></span>');
     } else {
         $(this).html('<span class="show_more">Show More&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></span>');
     };
