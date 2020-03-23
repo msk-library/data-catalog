@@ -67,6 +67,14 @@ form.input-group {
   width: 100%;
 }
 
+/* Search Tips */
+.search-tips-link {
+  float: left;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  text-decoration: underline;
+}
+
 /*Feedback */
 .btn-warning {
   margin-right: 30px;
