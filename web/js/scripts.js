@@ -31,7 +31,7 @@ jQuery(function($) {
   $('ul.facets-list').each(function(){
     var max = 4;
     if ($(this).find('li').length > max+1) {
-        $(this).find('li:gt('+max+')').hide().end().append('<li class="more_facets"><span class="show_more">Show More</span></li>');
+        $(this).find('li:gt('+max+')').hide().end().append('<li class="more_facets"><span class="show_more">Show More&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></span></li>');
     };
   });
 
@@ -41,7 +41,7 @@ jQuery(function($) {
     if ( $(this).is(':contains("More") ')) {
         $(this).html('<span class="show_less">Show Less</span>');
     } else {
-        $(this).html('<span class="show_more">Show More</span>');
+        $(this).html('<span class="show_more">Show More&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></span>');
     };
   });
 
