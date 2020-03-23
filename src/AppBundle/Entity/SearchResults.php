@@ -54,6 +54,8 @@ class SearchResults {
     'related_software' => 'Analytical/Collection Software',
     'Data Tools' => 'collection_standards',
     'collection_standards' => 'Data Tools',
+    'Repository' => 'data_locations',
+    'data_locations' => 'Repository',
 
     /* Unused facets
     'Timeframe' => 'dataset_years',
