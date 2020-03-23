@@ -106,9 +106,6 @@
    {% for item in results.resultItems %}
     <li class="dataset-summary"> 
     <h4 class="dataset-title"><a class="dataset-title-link" href="{{ path("view_dataset", {"uid":item.id}) }}">{{ item.dataset_title }}</a>
-      {% if item.origin == "Internal" %}
-        <div class="internal-dataset-badge">{{ internal_dataset_text }}</div>
-      {% endif %}
     </h4>
             <dl class="dl-horizontal">
 
@@ -195,19 +192,6 @@
 <div class="col-sm-2 col-sm-pull-10" id="facets-pane">
 <h4 class="facet-pane-header">Filter by</h4>
 
-  <div class="checkbox facet-section" id="internal-only-filter-container">
-    <label>
-      <input 
-        class="" 
-        {% if "origin_fq:Internal" in currentSearch.facets %}
-          checked="checked"
-        {% endif %}
-        type="checkbox" 
-        id="internal-only-filter"
-      >
-        {{ institution_name_short }} Datasets Only 
-    </label>
-  </div>
   {% for category,facets in results.facets if category != 'Origin' %}
     {% set facetSection = [] %}
     {% for facet in facets %} 
@@ -216,7 +200,7 @@
        {% set facetSection = facetSection|merge([facet]) %}
      {% endif %}
     {% endfor %}
-    {% if facetSection|length > 0 %}
+    {% if facetSection|length > 2 %}
      <div class="facet-section">
       <h5 class="facet-header">{{ category }}</h5>
         <ul class="facets-list list-unstyled">

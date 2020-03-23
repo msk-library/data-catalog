@@ -230,32 +230,17 @@ class GeneralController extends Controller
 		
 		}
 
-		if ($dataset->getOrigin() == 'Internal') {
-      if ($this->get('templating')->exists('institution/view_dataset_internal.html.twig')) {
-        return $this->render('institution/view_dataset_internal.html.twig', array(
-          'dataset' => $dataset,
-        )); 
-      }
-      else {
-        return $this->render('default/view_dataset_internal.html.twig', array(
-          'dataset' => $dataset,
-        ));
-      }
 
-		} else {
-        if ($this->get('templating')->exists('institution/view_dataset_external.html.twig')) {
-          return $this->render('institution/view_dataset_external.html.twig', array(
-            'dataset' => $dataset,
-          ));
-        }
-        else {
-          return $this->render('default/view_dataset_external.html.twig', array(
-            'dataset' => $dataset,
-          ));
-        }
-		}
-  }
-  
+    if ($this->get('templating')->exists('institution/view_dataset_external.html.twig')) {
+      return $this->render('institution/view_dataset_external.html.twig', array(
+        'dataset' => $dataset,
+      ));
+    }
+    else {
+      return $this->render('default/view_dataset_external.html.twig', array(
+        'dataset' => $dataset,
+      ));
+    }
 	
-		
+  }	
 }
