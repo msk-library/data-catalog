@@ -75,6 +75,10 @@ form.input-group {
   text-decoration: underline;
 }
 
+.model-body {
+  text-align: left;
+}
+
 /*Feedback */
 .btn-warning {
   margin-right: 30px;
