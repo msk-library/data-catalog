@@ -137,14 +137,19 @@ div.footer-wrapper a {
 }
 
 /* Facets */
+.facet-header {
+  color:black;
+}
 .show_more {
   font-weight: 700;
   cursor: pointer;
+  color: gray;
 }
 
 .show_less {
   font-weight: 700;
   cursor: pointer;
+  color:gray;
 }
 
 /* About Page */
