@@ -1841,7 +1841,7 @@ class Dataset implements JsonSerializable {
        $formats = $awards = $restrictions = $stds = $genders = $sexes = $ages = $equipment = $software = $subject_of_study = [];
        $areas = $area_details = $domains = $publications = $keywords = $publishers = [];
        $authors = $data_type_array = $types_of_study = $corresponding_authors = $experts = $data_locations = $akas = $related_datasets = [];
-       $other_resource_names = $other_resource_descriptions = $related_pubs = $data_location_contents = [];
+       $other_resource_names = $other_resource_descriptions = $related_pubs = $data_location_contents  = $data_location_urls = [];
        $accession_numbers = $access_instructions = [];
        foreach ($this->dataset_formats as $format) { $formats[]=$format->getDisplayName(); }
        foreach ($this->awards as $award) { $awards[]=$award->getDisplayName(); }
