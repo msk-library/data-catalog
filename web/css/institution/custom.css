@@ -72,7 +72,7 @@ form.input-group {
   float: left;
   margin-left: 10px;
   margin-bottom: 5px;
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .modal-body {
