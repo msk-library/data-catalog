@@ -75,6 +75,7 @@ class SubjectKeyword {
     return $this->keyword;
   }
 
+
     /**
      * Get id
      *
@@ -129,6 +130,36 @@ class SubjectKeyword {
     public function getMeshCode()
     {
         return $this->mesh_code;
+    }
+
+
+    /**
+     * get OncoTree Metadata
+     *
+     * @return string
+     */
+    public function getOncoTreeMetadata() {
+        $ocode = $this->keyword;
+        $api_url = "http://oncotree.mskcc.org/api/tumorTypes/search/code/{$ocode}";
+        // Read JSON file
+        $json_data = file_get_contents($api_url);
+        if ($json_data === false) {
+            echo "Invalid OncoTree Code";   
+        } else {
+            $onco_data = json_decode($json_data);
+                //print_r($onco_data); //This works
+                
+                echo "Code: ".$onco_data[0]->code;
+                echo "<br />";
+                echo "Name: ".$onco_data[0]->name;
+                echo "<br />";
+                echo "Main Type: ".$onco_data[0]->mainType;
+                echo "<br />";
+                echo "Tissue: ".$onco_data[0]->tissue;
+                echo "<br />";
+                echo "Parent: ".$onco_data[0]->parent;
+                
+        }
     }
 
 
