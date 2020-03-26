@@ -142,10 +142,10 @@ class SubjectKeyword {
         $ocode = $this->keyword;
         $api_url = "http://oncotree.mskcc.org/api/tumorTypes/search/code/{$ocode}";
         // Read JSON file
-        $json_data = file_get_contents($api_url);
-        if ($json_data === false) {
-            echo "Invalid OncoTree Code";   
+        if (@file_get_contents($api_url) === false) {
+            return;   
         } else {
+            $json_data = @file_get_contents($api_url);
             $onco_data = json_decode($json_data);
                 //print_r($onco_data); //This works
                 
