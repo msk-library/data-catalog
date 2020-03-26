@@ -255,6 +255,7 @@ $(function () {
         <dt>OncoTree Cancer Tag(s)</dt>
          <dd>{% for keyword in dataset.subjectKeywords %}
           <div class="multiple-item-list"><a href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}">{{ keyword.getDisplayName }}</a></div>
+          <div class="api-test"{{ keyword.getOncoTreeMetadata }}</div>
           {% endfor %}
           </dd>
         {% endif %}
