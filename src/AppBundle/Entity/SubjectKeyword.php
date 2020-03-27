@@ -151,6 +151,7 @@ class SubjectKeyword {
             $returnhtml .= "<p><strong>Main Type:</strong> {$onco_data[0]->mainType}</p>";
             $returnhtml .= "<p><strong>Tissue:</strong> {$onco_data[0]->tissue}</p>";
             $returnhtml .= "<p><strong>Parent:</strong> {$onco_data[0]->parent}</p>";
+            $returnhtml .= "<p><a href='http://oncotree.mskcc.org' target='_blank'>More at OncoTree</a></p>";
             return $returnhtml;
     
         }
