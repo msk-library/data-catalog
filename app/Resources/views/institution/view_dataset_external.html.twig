@@ -54,6 +54,27 @@ $(function () {
         }
     }, 200);
   });
+
+    // initialize OncoTree popovers
+  $('.oncotree-list [data-toggle="popover"]').popover({
+     'html':'true',
+     'animation':false,
+     'trigger':'manual',
+     'placement':'bottom',
+  }).on("mouseenter", function () {
+    var _this = this;
+    $(this).popover("show");
+    $(".popover").on("mouseleave", function () {
+      $(_this).popover('hide');
+    });
+  }).on("mouseleave", function () {
+    var _this = this;
+    setTimeout(function () {
+        if (!$(".popover:hover").length) {
+            $(_this).popover("hide");
+        }
+    }, 200);
+  });
 })
 </script>
 {% endblock %}
@@ -253,10 +274,19 @@ $(function () {
 
      {% if (dataset.subjectKeywords.count > 0) %}
         <dt>OncoTree Cancer Tag(s)</dt>
-         <dd>{% for keyword in dataset.subjectKeywords %}
-          <div class="multiple-item-list"><a href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}">{{ keyword.getDisplayName }}</a></div>
+         <dd><span class="oncotree-list">{% for keyword in dataset.subjectKeywords %}
+          {% if (keyword.getOncoTreeMetadata is not empty) %}
+          {% set popoverContent = '' %}
+          {% set popoverContent = keyword.getOncoTreeMetadata %}
+            {% if popoverContent %}
+              <a tabindex="0" class="oncotree-link" href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}" role="button" data-toggle="popover" data-original-title="{{ keyword.getDisplayName }}" data-content="{{ popoverContent }}">{{ keyword.getDisplayName }}</a><br />
+            {% endif %}
+          {% else %}
+            <a tabindex="0" class="oncotree-link" href="/search?keyword=subject_keywords:{{ keyword.getDisplayName }}" title="{{ keyword.getDisplayName }}">{{ keyword.getDisplayName }}</a><br />
+          {% endif %}
+          
           {% endfor %}
-          </dd>
+          </span></dd>
         {% endif %}
      
      </dl>
