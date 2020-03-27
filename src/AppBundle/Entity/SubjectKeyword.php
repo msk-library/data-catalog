@@ -147,18 +147,12 @@ class SubjectKeyword {
         } else {
             $json_data = @file_get_contents($api_url);
             $onco_data = json_decode($json_data);
-                //print_r($onco_data); //This works
-                
-                echo "Code: ".$onco_data[0]->code;
-                echo "<br />";
-                echo "Name: ".$onco_data[0]->name;
-                echo "<br />";
-                echo "Main Type: ".$onco_data[0]->mainType;
-                echo "<br />";
-                echo "Tissue: ".$onco_data[0]->tissue;
-                echo "<br />";
-                echo "Parent: ".$onco_data[0]->parent;
-                
+            $returnhtml =  "<p><strong>Name:</strong> {$onco_data[0]->name}</p>";
+            $returnhtml .= "<p><strong>Main Type:</strong> {$onco_data[0]->mainType}</p>";
+            $returnhtml .= "<p><strong>Tissue:</strong> {$onco_data[0]->tissue}</p>";
+            $returnhtml .= "<p><strong>Parent:</strong> {$onco_data[0]->parent}</p>";
+            return $returnhtml;
+    
         }
     }
 
