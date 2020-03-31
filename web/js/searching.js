@@ -55,7 +55,7 @@ jQuery(function($) {
   $('.facetBreadcrumb.btn').on({
     mouseover: function() {
       $(this).attr('class','facetBreadcrumb btn btn-xs btn-danger');
-      $(this).append('<span class="glyphicon glyphicon-remove"></span>');
+      //$(this).append('<span class="glyphicon glyphicon-remove"></span>');
     },
     mouseout: function() {
       $(this).attr('class','facetBreadcrumb btn btn-xs btn-default');
