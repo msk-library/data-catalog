@@ -67,6 +67,11 @@ class Dataset implements JsonSerializable {
   protected $slug;
 
 
+   /**
+   * @ORM\Column(type="string", length=128, nullable=true)
+   */
+  protected $doi;
+
   /**
    * @Assert\NotBlank()
    * @Assert\Regex(
