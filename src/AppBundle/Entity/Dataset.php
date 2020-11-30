@@ -2304,4 +2304,76 @@ class Dataset implements JsonSerializable {
     }
 
 
+
+    /**
+     * Set doi
+     *
+     * @param string $doi
+     *
+     * @return Dataset
+     */
+    public function setDoi($doi)
+    {
+        $this->doi = $doi;
+
+        return $this;
+    }
+
+    /**
+     * Get doi
+     *
+     * @return string
+     */
+    public function getDoi()
+    {
+        return $this->doi;
+    }
+
+    /**
+     * Add datasetEdit
+     *
+     * @param \AppBundle\Entity\DatasetEdit $datasetEdit
+     *
+     * @return Dataset
+     */
+    public function addDatasetEdit(\AppBundle\Entity\DatasetEdit $datasetEdit)
+    {
+        $this->dataset_edits[] = $datasetEdit;
+
+        return $this;
+    }
+
+    /**
+     * Remove datasetEdit
+     *
+     * @param \AppBundle\Entity\DatasetEdit $datasetEdit
+     */
+    public function removeDatasetEdit(\AppBundle\Entity\DatasetEdit $datasetEdit)
+    {
+        $this->dataset_edits->removeElement($datasetEdit);
+    }
+
+    /**
+     * Add tempAccessKey
+     *
+     * @param \AppBundle\Entity\TempAccessKey $tempAccessKey
+     *
+     * @return Dataset
+     */
+    public function addTempAccessKey(\AppBundle\Entity\TempAccessKey $tempAccessKey)
+    {
+        $this->temp_access_keys[] = $tempAccessKey;
+
+        return $this;
+    }
+
+    /**
+     * Remove tempAccessKey
+     *
+     * @param \AppBundle\Entity\TempAccessKey $tempAccessKey
+     */
+    public function removeTempAccessKey(\AppBundle\Entity\TempAccessKey $tempAccessKey)
+    {
+        $this->temp_access_keys->removeElement($tempAccessKey);
+    }
 }
