@@ -111,7 +111,7 @@ class DatasetViaApiType extends AbstractType {
       'allow_add' => true
     ));
     $builder->add('doi', 'text', array(
-      'required' => true,
+      'required' => false,
       'label'    => 'DOI'));
     $builder->add('origin','choice',array(
       'required'=> true,

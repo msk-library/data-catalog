@@ -60,7 +60,7 @@ class DatasetType extends AbstractType {
       'allow_add' => true
     ));
     $builder->add('doi', 'text', array(
-      'required' => true,
+      'required' => false,
       'label'    => 'DOI'));
     if ($this->userIsAdmin) {
       $builder->add('origin','choice',array(
