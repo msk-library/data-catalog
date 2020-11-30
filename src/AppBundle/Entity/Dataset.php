@@ -1887,6 +1887,7 @@ class Dataset implements JsonSerializable {
          'id'                    => $this->dataset_uid,
          'dataset_title'         => $this->title,
          'dataset_alt_title'     => $akas,
+         'doi'                   => $this->doi,
          'origin'                => $this->origin,
          'description'           => $this->description,
          'dataset_end_date'      => $this->subject_end_date,
