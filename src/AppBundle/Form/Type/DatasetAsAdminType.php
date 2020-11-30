@@ -101,6 +101,9 @@ class DatasetAsAdminType extends AbstractType {
       'required' => true,
       'label'    => 'Dataset Title'
     ));
+    $builder->add('doi', 'text', array(
+      'required' => true,
+      'label'    => 'DOI'));
     $builder->add('dataset_alternate_titles', 'collection', array(
       'type'      => new DatasetAlternateTitleType(),
       'required' => false,
