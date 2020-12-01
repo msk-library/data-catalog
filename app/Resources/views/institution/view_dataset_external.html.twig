@@ -323,7 +323,7 @@ $(function () {
          <dd>{{ dataset.accessInstructions|raw }}</dd>
       
       <dt>DOI</dt>
-       <dd><a href="{{ dataset.doi }}">{{ dataset.doi }}</a></dd>
+       <dd><a href="{{ dataset.doi }}" target="_blank">{{ dataset.doi }}</a></dd>
 
       {% if (dataset.publications.count > 0) %}
        <dt>Associated Publications</dt>
