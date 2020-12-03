@@ -103,6 +103,7 @@ class DatasetAsAdminType extends AbstractType {
     ));
     $builder->add('doi', 'text', array(
       'required' => true,
+      'attr'=>array('rows'=>'7','placeholder'=>'ex. 10.1158/2159-8290.CD-12-0095'),
       'label'    => 'DOI'));
     $builder->add('dataset_alternate_titles', 'collection', array(
       'type'      => new DatasetAlternateTitleType(),
