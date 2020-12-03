@@ -321,10 +321,11 @@ $(function () {
       
       <dt>Access Instructions</dt>
          <dd>{{ dataset.accessInstructions|raw }}</dd>
-      
+      {% if (dataset.doi is not empty) %}
       <dt>DOI</dt>
        <dd><a href="{{ dataset.doi }}" target="_blank">{{ dataset.doi }}</a></dd>
-
+      {% endif %}
+      
       {% if (dataset.publications.count > 0) %}
        <dt>Associated Publications</dt>
        <dd>
