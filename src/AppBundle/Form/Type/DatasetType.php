@@ -61,7 +61,7 @@ class DatasetType extends AbstractType {
     ));
     $builder->add('doi', 'text', array(
       'required' => false,
-      'attr'=>array('rows'=>'7','placeholder'=>'ex. 10.1158/2159-8290.CD-12-0095')
+      'attr'=>array('rows'=>'7','placeholder'=>'ex. 10.1158/2159-8290.CD-12-0095'),
       'label'    => 'DOI'));
     if ($this->userIsAdmin) {
       $builder->add('origin','choice',array(
