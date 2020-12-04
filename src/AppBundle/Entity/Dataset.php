@@ -67,6 +67,11 @@ class Dataset implements JsonSerializable {
   protected $slug;
 
 
+   /**
+   * @ORM\Column(type="string", length=128, nullable=true)
+   */
+  protected $doi;
+
   /**
    * @Assert\NotBlank()
    * @Assert\Regex(
@@ -1795,6 +1800,7 @@ class Dataset implements JsonSerializable {
         'origin'                    => $this->origin,
         'description'               => $this->description,
         'access_instructions'       => $this->access_instructions,
+        'doi'                       => $this->doi,
         'pubmed_search'             => $this->pubmed_search,
         'dataset_size'              => $this->dataset_size,
         'subject_start_date'        => $this->subject_start_date,
@@ -1881,6 +1887,7 @@ class Dataset implements JsonSerializable {
          'id'                    => $this->dataset_uid,
          'dataset_title'         => $this->title,
          'dataset_alt_title'     => $akas,
+         'doi'                   => $this->doi,
          'origin'                => $this->origin,
          'description'           => $this->description,
          'dataset_end_date'      => $this->subject_end_date,
@@ -1960,6 +1967,7 @@ class Dataset implements JsonSerializable {
         'origin'                    => $this->origin,
         'description'               => $this->description,
         'access_instructions'       => $this->access_instructions,
+        'doi'                       => $this->doi,
         'pubmed_search'             => $this->pubmed_search,
         'dataset_size'              => $this->dataset_size,
         'subject_start_date'        => $this->subject_start_date,
@@ -2299,4 +2307,76 @@ class Dataset implements JsonSerializable {
     }
 
 
+
+    /**
+     * Set doi
+     *
+     * @param string $doi
+     *
+     * @return Dataset
+     */
+    public function setDoi($doi)
+    {
+        $this->doi = $doi;
+
+        return $this;
+    }
+
+    /**
+     * Get doi
+     *
+     * @return string
+     */
+    public function getDoi()
+    {
+        return $this->doi;
+    }
+
+    /**
+     * Add datasetEdit
+     *
+     * @param \AppBundle\Entity\DatasetEdit $datasetEdit
+     *
+     * @return Dataset
+     */
+    public function addDatasetEdit(\AppBundle\Entity\DatasetEdit $datasetEdit)
+    {
+        $this->dataset_edits[] = $datasetEdit;
+
+        return $this;
+    }
+
+    /**
+     * Remove datasetEdit
+     *
+     * @param \AppBundle\Entity\DatasetEdit $datasetEdit
+     */
+    public function removeDatasetEdit(\AppBundle\Entity\DatasetEdit $datasetEdit)
+    {
+        $this->dataset_edits->removeElement($datasetEdit);
+    }
+
+    /**
+     * Add tempAccessKey
+     *
+     * @param \AppBundle\Entity\TempAccessKey $tempAccessKey
+     *
+     * @return Dataset
+     */
+    public function addTempAccessKey(\AppBundle\Entity\TempAccessKey $tempAccessKey)
+    {
+        $this->temp_access_keys[] = $tempAccessKey;
+
+        return $this;
+    }
+
+    /**
+     * Remove tempAccessKey
+     *
+     * @param \AppBundle\Entity\TempAccessKey $tempAccessKey
+     */
+    public function removeTempAccessKey(\AppBundle\Entity\TempAccessKey $tempAccessKey)
+    {
+        $this->temp_access_keys->removeElement($tempAccessKey);
+    }
 }
