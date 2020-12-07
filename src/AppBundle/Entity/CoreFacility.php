@@ -54,6 +54,11 @@ class CoreFacility {
    */
   protected $slug;
 
+    /**
+   * @ORM\Column(type="string",length=256, nullable=true)
+   */
+  protected $core_facility_email;
+
   /**
    * @Assert\Regex(
    *     pattern="/<[a-z][\s\S]*>/i",
@@ -149,6 +154,29 @@ class CoreFacility {
         return $this->core_facility_name;
     }
 
+        /**
+     * Set core_facility_email
+     *
+     * @param string $coreFacilityEmail
+     * @return CoreFacility
+     */
+    public function setCoreFacilityEmail($coreFacilityEmail)
+    {
+        $this->core_facility_email = strip_tags($coreFacilityEmail);
+
+        return $this;
+    }
+
+    /**
+     * Get core_facility_email
+     *
+     * @return string 
+     */
+    public function getCoreFacilityEmail()
+    {
+        return $this->core_facility_email;
+    }
+
     /**
      * Set core_facility_url
      *
@@ -214,6 +242,7 @@ class CoreFacility {
         return array(
             'core_facility_name'=>$this->core_facility_name,
             'core_facility_url'=>$this->core_facility_url,
+            'core_facility_email'=>$this->core_facility_email
         );
     }
 }
