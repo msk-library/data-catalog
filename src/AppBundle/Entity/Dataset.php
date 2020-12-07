@@ -1604,7 +1604,7 @@ class Dataset implements JsonSerializable {
      *
      * @param \AppBundle\Entity\CoreFacility $coreFacility
      */
-    public function removeStudyType(\AppBundle\Entity\CoreFacility $coreFacility)
+    public function removeCoreFacility(\AppBundle\Entity\CoreFacility $coreFacility)
     {
         $this->core_facilities->removeElement($coreFacility);
     }
