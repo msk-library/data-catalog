@@ -375,7 +375,7 @@ class Dataset implements JsonSerializable {
   protected $publishers;
 
 
-      /**
+    /**
    * @ORM\ManyToMany(targetEntity="CoreFacility", cascade={"persist"}, inversedBy="datasets")
    * @ORM\JoinTable(name="datasets_core_facilities",
    *                joinColumns={@ORM\JoinColumn(name="dataset_uid",referencedColumnName="dataset_uid")},
