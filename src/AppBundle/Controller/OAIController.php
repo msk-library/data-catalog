@@ -3,11 +3,24 @@
 namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class OAIController extends Controller
 {
-    public function indexAction(){
+    /**
+   * Takes incoming OAI requests and provides appropriate response
+   *
+   * @param Request The current HTTP request
+   *
+   * @return Response A Response instance
+   *
+   * @Route("/oai/", name="oai_base")
+   * 
+   */
+    public function indexAction(Request $request){
         date_default_timezone_set('UTC');
 
         $base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://' : 'http://') . $_SERVER['SERVER_NAME'];
@@ -45,7 +58,6 @@ class OAIController extends Controller
                 $template = 'oai_list_identifiers.xml.twig';
                 break;
         }
-
         $response = new Response(
             $this->renderView('oai_base.xml.twig', array(
                 'oai_template' => $template,
