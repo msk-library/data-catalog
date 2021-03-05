@@ -523,6 +523,7 @@ class Dataset implements JsonSerializable {
     $this->subject_keywords = new \Doctrine\Common\Collections\ArrayCollection();
     $this->publishers = new \Doctrine\Common\Collections\ArrayCollection();
     $this->core_facilities = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->onco_trees = new \Doctrine\Common\Collections\ArrayCollection();
     $this->data_locations = new \Doctrine\Common\Collections\ArrayCollection();
     $this->other_resources = new \Doctrine\Common\Collections\ArrayCollection();
     $this->dataset_alternate_titles = new \Doctrine\Common\Collections\ArrayCollection();
@@ -1630,6 +1631,38 @@ class Dataset implements JsonSerializable {
     }
 
 
+        /**
+     * Add onco_trees
+     *
+     * @param \AppBundle\Entity\OncoTree $oncoTree
+     * @return Dataset
+     */
+    public function addOncoTree(\AppBundle\Entity\OncoTree $oncoTree)
+    {
+        $this->onco_trees[] = $oncoTree;
+
+        return $this;
+    }
+
+    /**
+     * Remove onco_trees
+     *
+     * @param \AppBundle\Entity\OncoTree $oncoTree
+     */
+    public function removeOncoTree(\AppBundle\Entity\OncoTree $oncoTree)
+    {
+        $this->onco_trees->removeElement($oncoTree);
+    }
+
+    /**
+     * Get onco_trees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOncoTrees()
+    {
+        return $this->onco_trees;
+    }
 
     /**
      * Add data_location
