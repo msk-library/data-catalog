@@ -418,6 +418,16 @@ class Dataset implements JsonSerializable {
    */
   protected $related_software;
 
+  /**
+   * @ORM\ManyToMany(targetEntity="OncoTree", cascade={"persist"}, inversedBy="datasets")
+   * @ORM\JoinTable(name="datasets_onco_trees",
+   *                joinColumns={@ORM\JoinColumn(name="dataset_uid",referencedColumnName="dataset_uid")},
+   *                inverseJoinColumns={@ORM\JoinColumn(name="onco_tree_id",referencedColumnName="onco_tree_id")}
+   *                )
+   * @ORM\OrderBy({"onco_tree_name"="ASC"})
+   */
+  protected $onco_trees;
+
 
   /**
    * @ORM\ManyToMany(targetEntity="RelatedEquipment", cascade={"persist"}, inversedBy="datasets")
