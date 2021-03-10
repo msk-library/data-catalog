@@ -424,7 +424,7 @@ class Dataset implements JsonSerializable {
    *                joinColumns={@ORM\JoinColumn(name="dataset_uid",referencedColumnName="dataset_uid")},
    *                inverseJoinColumns={@ORM\JoinColumn(name="onco_tree_id",referencedColumnName="onco_tree_id")}
    *                )
-   * @ORM\OrderBy({"onco_tree_name"="ASC"})
+   * @ORM\OrderBy({"onco_tree_code"="ASC"})
    */
   protected $onco_trees;
 

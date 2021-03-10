@@ -55,7 +55,7 @@ class OncoTree {
    *     match=false,
    *     message="Name cannot contain HTML or script tags"
    * )
-   * @ORM\Column(type="string",length=255, unique=true)
+   * @ORM\Column(type="string",length=255)
    */
   protected $onco_tree_name;
 
@@ -159,7 +159,7 @@ class OncoTree {
    * @return string
    */
   public function getDisplayName() {
-    return $this->onco_tree_name;
+    return $this->onco_tree_code;
   }
 
 
