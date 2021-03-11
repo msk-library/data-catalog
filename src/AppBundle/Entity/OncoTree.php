@@ -162,7 +162,6 @@ class OncoTree {
     return $this->onco_tree_code;
   }
 
-
     /**
      * Get id
      *
@@ -363,6 +362,22 @@ class OncoTree {
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * get OncoTree Metadata
+     *
+     * @return string
+     */
+    public function getOncoTreeMetadata() {
+      $html =  "<p><strong>Code:</strong> {$this->onco_tree_code}</p>";
+      $html .= "<p><strong>Main Type:</strong> {$this->onco_tree_main_type}</p>";
+      $html .= "<p><strong>Tissue:</strong> {$this->onco_tree_tissue}</p>";
+      $html .= "<p><strong>Parent:</strong> {$this->onco_tree_parent}</p>";
+      $html .= "<p><strong>NCI #:</strong> {$this->onco_tree_nci}</p>";
+      $html .= "<p><strong>UMLS #:</strong> {$this->onco_tree_umls}</p>";
+      $html .= "<p><a href='http://oncotree.mskcc.org' target='_blank'>More at OncoTree</a></p>";
+      return $html;
     }
 
     /**
