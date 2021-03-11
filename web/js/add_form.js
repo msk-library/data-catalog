@@ -47,8 +47,11 @@ jQuery(function($) {
       if (thisField == 'CoreFacilitie') {
         thisField = 'CoreFacility';
       } 
-      var addNewLink = "<a href='/add/"+thisField+"?modal=true' class='addNewEntity'>Add new</a>";
-      sel.parent('div').append(addNewLink);
+      // Don't show Add New link for OncoTree Codes
+      if (thisField != 'OncoTree') {
+        var addNewLink = "<a href='/add/"+thisField+"?modal=true' class='addNewEntity'>Add new</a>";
+        sel.parent('div').append(addNewLink);
+      }
     }
   }
 

@@ -418,6 +418,16 @@ class Dataset implements JsonSerializable {
    */
   protected $related_software;
 
+  /**
+   * @ORM\ManyToMany(targetEntity="OncoTree", cascade={"persist"}, inversedBy="datasets")
+   * @ORM\JoinTable(name="datasets_onco_trees",
+   *                joinColumns={@ORM\JoinColumn(name="dataset_uid",referencedColumnName="dataset_uid")},
+   *                inverseJoinColumns={@ORM\JoinColumn(name="onco_tree_id",referencedColumnName="onco_tree_id")}
+   *                )
+   * @ORM\OrderBy({"onco_tree_code"="ASC"})
+   */
+  protected $onco_trees;
+
 
   /**
    * @ORM\ManyToMany(targetEntity="RelatedEquipment", cascade={"persist"}, inversedBy="datasets")
@@ -513,6 +523,7 @@ class Dataset implements JsonSerializable {
     $this->subject_keywords = new \Doctrine\Common\Collections\ArrayCollection();
     $this->publishers = new \Doctrine\Common\Collections\ArrayCollection();
     $this->core_facilities = new \Doctrine\Common\Collections\ArrayCollection();
+    $this->onco_trees = new \Doctrine\Common\Collections\ArrayCollection();
     $this->data_locations = new \Doctrine\Common\Collections\ArrayCollection();
     $this->other_resources = new \Doctrine\Common\Collections\ArrayCollection();
     $this->dataset_alternate_titles = new \Doctrine\Common\Collections\ArrayCollection();
@@ -1620,6 +1631,38 @@ class Dataset implements JsonSerializable {
     }
 
 
+        /**
+     * Add onco_trees
+     *
+     * @param \AppBundle\Entity\OncoTree $oncoTree
+     * @return Dataset
+     */
+    public function addOncoTree(\AppBundle\Entity\OncoTree $oncoTree)
+    {
+        $this->onco_trees[] = $oncoTree;
+
+        return $this;
+    }
+
+    /**
+     * Remove onco_trees
+     *
+     * @param \AppBundle\Entity\OncoTree $oncoTree
+     */
+    public function removeOncoTree(\AppBundle\Entity\OncoTree $oncoTree)
+    {
+        $this->onco_trees->removeElement($oncoTree);
+    }
+
+    /**
+     * Get onco_trees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOncoTrees()
+    {
+        return $this->onco_trees;
+    }
 
     /**
      * Add data_location
@@ -1810,7 +1853,7 @@ class Dataset implements JsonSerializable {
     public function jsonSerialize() {
       $formats = $awards = $restrictions = $stds = $genders = $sexes = $ages = [];
       $equipment = $software = $subject_of_study = $others = [];
-      $locs = $rel = $areas = $area_details = $domains = $publications = $keywords = $publishers = $core_facilities = [];
+      $locs = $rel = $areas = $area_details = $domains = $publications = $keywords = $publishers = $core_facilities = $onco_trees = [];
       $authors = $data_type_array = $types_of_study = $corresponding_authors = $experts = [];
       $data_locations = $akas = $related_datasets = [];
 
@@ -1825,6 +1868,7 @@ class Dataset implements JsonSerializable {
       foreach ($this->subject_keywords as $kwd) { $keywords[]=$kwd->getDisplayName(); }
       foreach ($this->publishers as $pubber) { $publishers[]=$pubber->getDisplayName(); }
       foreach ($this->core_facilities as $cf) { $core_facilities[]=$cf->getDisplayName(); }
+      foreach ($this->onco_trees as $ot) { $onco_trees[]=$ot->getDisplayName(); }
       foreach ($this->publications as $pub) { $publications[]=$pub->getDisplayName(); }
       foreach ($this->access_restrictions as $restriction) { $restrictions[]=$restriction->getDisplayName(); }
       foreach ($this->related_equipment as $equip) { $equipment[]=$equip->getDisplayName(); }
@@ -1866,6 +1910,7 @@ class Dataset implements JsonSerializable {
         'publishers'                => $publishers,
         'publications'              => $publications,
         'core_facilities'           => $core_facilities,
+        'onco_trees'                => $onco_trees,
         'access_restrictions'       => $restrictions,
         'related_equipment'         => $equipment,
         'related_software'          => $software,
@@ -1894,7 +1939,7 @@ class Dataset implements JsonSerializable {
      public function serializeForSolr() {
         
        $formats = $awards = $restrictions = $stds = $genders = $sexes = $ages = $equipment = $software = $subject_of_study = [];
-       $areas = $area_details = $domains = $publications = $keywords = $publishers = $core_facilities = [];
+       $areas = $area_details = $domains = $publications = $keywords = $publishers = $core_facilities = $onco_trees = [];
        $authors = $data_type_array = $types_of_study = $corresponding_authors = $experts = $data_locations = $akas = $related_datasets = [];
        $other_resource_names = $other_resource_descriptions = $related_pubs = $data_location_contents  = $data_location_urls = [];
        $accession_numbers = $access_instructions = [];
@@ -1912,6 +1957,7 @@ class Dataset implements JsonSerializable {
        foreach ($this->subject_keywords as $kwd) { $keywords[]=$kwd->getDisplayName(); }
        foreach ($this->publishers as $pubber) { $publishers[]=$pubber->getDisplayName(); }
        foreach ($this->core_facilities as $cf) { $core_facilities[]=$cf->getDisplayName(); }
+       foreach ($this->onco_trees as $ot) { $onco_trees[]=$ot->getDisplayName(); }
        foreach ($this->data_types as $data_type) { $data_type_array[]=$data_type->getDisplayName(); }
        foreach ($this->dataset_alternate_titles as $alt) { $akas[]=$alt->getDisplayName(); }
        foreach ($this->study_types as $study_type) { $types_of_study[]=$study_type->getDisplayName(); }
@@ -1957,6 +2003,7 @@ class Dataset implements JsonSerializable {
          'subject_geographic_area_details'=>$area_details,
          'subject_domain'        => $domains,
          'subject_keywords'      => $keywords,
+         'onco_trees'            => $onco_trees,
          'publishers'            => $publishers,
          'core_facilities'       => $core_facilities,
          'subject_of_study'      => $subject_of_study,
@@ -1996,6 +2043,7 @@ class Dataset implements JsonSerializable {
       foreach ($this->subject_keywords as $kwd) { $keywords[]=$kwd->getAllProperties(); }
       foreach ($this->publishers as $pubber) { $publishers[]=$pubber->getAllProperties(); }
       foreach ($this->core_facilities as $cf) { $core_facilities[]=$cf->getAllProperties(); }
+      foreach ($this->onco_trees as $ot) { $onco_trees[]=$ot->getAllProperties(); }
       foreach ($this->publications as $pub) { $publications[]=$pub->getAllProperties(); }
       foreach ($this->access_restrictions as $restriction) { $restrictions[]=$restriction->getDisplayName(); }
       foreach ($this->related_equipment as $equip) { $equipment[]=$equip->getAllProperties(); }
@@ -2034,6 +2082,7 @@ class Dataset implements JsonSerializable {
         'related_datasets'          => $related_datasets,
         'authorships'               => $authors,
         'subject_keywords'          => $keywords,
+        'onco_trees'                => $onco_trees,
         'publishers'                => $publishers,
         'publications'              => $publications,
         'core_facilities'           => $core_facilities,
