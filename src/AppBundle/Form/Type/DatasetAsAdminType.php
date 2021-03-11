@@ -435,7 +435,7 @@ class DatasetAsAdminType extends AbstractType {
       'attr'=>array('style'=>'width:100%'),
       'multiple' => true,
       'by_reference'=>false,
-      'label'     => 'OncoTree',
+      'label'     => 'OncoTree Codes',
     ));
      
     $builder->add('erd_url', 'text', array(
