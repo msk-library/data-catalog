@@ -159,7 +159,7 @@ class OncoTree {
    * @return string
    */
   public function getDisplayName() {
-    return $this->onco_tree_code;
+    return $this->onco_tree_name;
   }
 
     /**
