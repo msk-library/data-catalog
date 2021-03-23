@@ -188,6 +188,9 @@
           <a href="{{ path('admin_users') }}">Manage Website Users</a>
          </li>
          <div class="spacer25"></div>
+          <li class="{% if 'update/Dataset' in app.request.requestUri  %}active{% endif %}" role="presentation">
+            <a href="{{ path('update_entity', {entityName:'ArchivedDatasets'}) }}">View Archived Datasets</a>
+         </li>
          <li class="{% if 'remove/Dataset' in app.request.requestUri %}active{% endif %}" role="presentation">
           <a href="{{ path('remove_entity', {'entityName':'Dataset'}) }}">Remove a Dataset</a>
          </li>
