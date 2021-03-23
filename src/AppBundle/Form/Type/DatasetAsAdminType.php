@@ -183,8 +183,8 @@ class DatasetAsAdminType extends AbstractType {
             return preg_replace('#<br\s*/?>#i', "\n", $originalInstructions);
           },
           function ($submittedInstructions) {
-            // remove most HTML tags (but not br,a,b,strong)
-            $cleaned = strip_tags($submittedInstructions, '<br><br/><a><b><strong>');
+            // remove most HTML tags (keep br,a,b,strong,ol,ul,li)
+            $cleaned = strip_tags($submittedInstructions, '<br><br/><a><b><strong><ol><ul><li>');
 
             // transform any \n to real <br/>
             return str_replace("\n", '<br/>', $cleaned);
