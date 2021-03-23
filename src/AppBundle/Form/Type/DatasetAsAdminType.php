@@ -3,6 +3,7 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\ChoiceList\ChoiceList;
@@ -173,6 +174,23 @@ class DatasetAsAdminType extends AbstractType {
     $builder->add('access_instructions', 'textarea', array(
       'attr'=>array('rows'=>'7', 'placeholder'=>'Provide any information on restrictions or conditions for gaining access to data'),
       'label'    => 'Access Instructions'));
+
+    //strip out most HTML tags, allow <a>, <b>, <strong>, <br>, <br />
+    $builder->get('access_instructions')
+      ->addModelTransformer(new CallbackTransformer(
+                        // transform <br/> to \n so the textarea reads easier
+          function ($originalInstructions) {
+            return preg_replace('#<br\s*/?>#i', "\n", $originalInstructions);
+          },
+          function ($submittedInstructions) {
+            // remove most HTML tags (but not br,a,b,strong)
+            $cleaned = strip_tags($submittedInstructions, '<br><br/><a><b><strong>');
+
+            // transform any \n to real <br/>
+            return str_replace("\n", '<br/>', $cleaned);
+          }
+      ));
+
     //accession information
     $builder->add('data_locations', 'collection', array(
       'type'      => new DataLocationType(),
