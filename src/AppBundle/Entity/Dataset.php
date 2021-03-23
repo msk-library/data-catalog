@@ -470,6 +470,11 @@ class Dataset implements JsonSerializable {
    **/
   protected $data_locations;
 
+  /**
+   * @ORM\OneToMany(targetEntity="DataLocationURL", mappedBy="datasets_dataset_uid", cascade={"all"})
+   **/
+  protected $data_location_urls;
+
 
   /**
    * @ORM\OneToMany(targetEntity="OtherResource", mappedBy="datasets_dataset_uid", cascade={"all"})
