@@ -127,6 +127,23 @@ class DatasetAsAdminType extends AbstractType {
       'attr'=>array('rows'=>'7','placeholder'=>'Please provide a brief description of the dataset'),
       'label'    => 'Description'
     ));
+
+    //strip out most HTML tags, allow <a>, <b>, <strong>, <br>, <br />
+    $builder->get('description')
+    ->addModelTransformer(new CallbackTransformer(
+                      // transform <br/> to \n so the textarea reads easier
+        function ($originalDescription) {
+          return preg_replace('#<br\s*/?>#i', "\n", $originalDescription);
+        },
+        function ($submittedDescription) {
+          // remove most HTML tags (keep br,a,b,strong,ol,ul,li)
+          $cleaned = strip_tags($submittedDescription, '<br><br/><a><b><strong><ol><ul><li><p>');
+
+          // transform any \n to real <br/>
+          return str_replace("\n", '<br/>', $cleaned);
+        }
+    ));
+
     $builder->add('published', 'choice', array(
       'required' => false,
       'expanded' => true,
