@@ -74,11 +74,6 @@ class Dataset implements JsonSerializable {
 
   /**
    * @Assert\NotBlank()
-   * @Assert\Regex(
-   *     pattern="/<[a-z][\s\S]*>/i",
-   *     match=false,
-   *     message="Description cannot contain HTML or script tags"
-   * )
    * @ORM\Column(type="string", length=3000)
    */
   protected $description;
