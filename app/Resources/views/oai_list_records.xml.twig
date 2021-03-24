@@ -26,7 +26,9 @@
 {% endfor %}
 
 
-<dc:date>{{ result.getDateAdded()|date('Y-m-d') }}</dc:date>
+<!-- <dc:date>{{ result.getDateAdded()|date('Y-m-d') }}</dc:date>
+-->
+
 <dc:identifier>{{ base_url }}/dataset/{{ result.getId() }}</dc:identifier>
 
 {% if result.getdoi() %}
@@ -76,18 +78,9 @@
 </dc:subject>
 {% endif %}
 
-{% if result.getOncoTrees()|length > 0 %}
-{% set count = 0 %}
-<dc:subject>
 {% for OncoTrees in result.getOncoTrees() %}
-{% spaceless %}
-{% if count > 0 %}, {% endif %}
-{{ OncoTrees.getDisplayName() }}
-{% set count = count + 1 %}
-{% endspaceless %}
+<dc:subject>{{ OncoTrees.getDisplayName() }}</dc:subject>
 {% endfor %}
-</dc:subject>
-{% endif %}
 
 <dc:description>{{ result.getDescription() }}</dc:description>
 
