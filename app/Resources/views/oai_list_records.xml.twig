@@ -17,6 +17,10 @@
     <dc:creator>{{ author.getDisplayName() }}</dc:creator>
 {% endfor %}
 
+{% for coreFacility in result.getCoreFacilities() %}
+    <dc:contributor>{{ coreFacility.getcoreFacilitiyName() }}</dc:contributor>
+{% endfor %}
+
 <dc:publisher>{{ publisher }}</dc:publisher>
 <dc:date>{{ result.getDateAdded()|date('Y-m-d') }}</dc:date>
 <dc:identifier>{{ base_url }}/dataset/{{ result.getId() }}</dc:identifier>
