@@ -25,7 +25,9 @@
 <dc:identifier>{{ result.getdoi() }}</dc:identifier>
 {% endif %}
 
-<dc:source>{{ result.getDataLocations() }}</dc:source>
+{% for location in result.getDataLocations() %}
+<dc:source>{{ location.getDataLocation() }}</dc:source>
+{% endfor %}
 
 {% if result.getSubjectOfStudy()|length > 0 %}
 {% set count = 0 %}
