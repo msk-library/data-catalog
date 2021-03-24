@@ -71,7 +71,7 @@
 {% if result.getOncoTrees()|length > 0 %}
 {% set count = 0 %}
 <dc:subject>
-{% for OncoTreesd in result.getOncoTrees() %}
+{% for OncoTrees in result.getOncoTrees() %}
 {% spaceless %}
 {% if count > 0 %}, {% endif %}
 {{ OncoTrees.getDisplayName() }}
