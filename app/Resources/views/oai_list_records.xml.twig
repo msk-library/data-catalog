@@ -14,12 +14,18 @@
 <dc:title>{{ result.getTitle() }}</dc:title>
 
 {% for author in result.getAuthors() %}
-    <dc:contributor>{{ author.getDisplayName() }}</dc:contributor>
+    <dc:creator>{{ author.getDisplayName() }}</dc:creator>
 {% endfor %}
 
 <dc:publisher>{{ publisher }}</dc:publisher>
 <dc:date>{{ result.getDateAdded()|date('Y-m-d') }}</dc:date>
 <dc:identifier>{{ base_url }}/dataset/{{ result.getId() }}</dc:identifier>
+
+{% if result.getdoi() %}
+<dc:identifier>{{ result.getdoi() }}</dc:identifier>
+{% endif %}
+
+<dc:source>{{ result.getDataLocations() }}</dc:source>
 
 {% if result.getSubjectOfStudy()|length > 0 %}
 {% set count = 0 %}
@@ -60,7 +66,22 @@
 </dc:subject>
 {% endif %}
 
+{% if result.getOncoTrees()|length > 0 %}
+{% set count = 0 %}
+<dc:subject>
+{% for OncoTreesd in result.getOncoTrees() %}
+{% spaceless %}
+{% if count > 0 %}, {% endif %}
+{{ OncoTrees.getDisplayName() }}
+{% set count = count + 1 %}
+{% endspaceless %}
+{% endfor %}
+</dc:subject>
+{% endif %}
+
 <dc:description>{{ result.getDescription() }}</dc:description>
+
+<dc:rights>{{ result.getAccessInstructions() }}</dc:rights>
 
 <dc:language>eng</dc:language>
 
