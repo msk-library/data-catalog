@@ -52,13 +52,24 @@ class UpdateController extends Controller {
     $userIsAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
     if ($uid == null) {
       $allEntities = $em->getRepository('AppBundle\Entity\Dataset')->findBy([], ['slug'=>'ASC']);
-      return $this->render('default/list_of_entities_to_update.html.twig', array(
-        'entities'    => $allEntities,
-        'entityName'  => 'Dataset',
-        'adminPage'   => true,
-        'userIsAdmin' => $userIsAdmin,
-        'displayName' => 'Dataset'
-      ));
+      if ($this->get('templating')->exists('institution/list_of_entities_to_update.html.twig')) {
+        return $this->render('institution/list_of_entities_to_update.html.twig', array(
+          'entities'    => $allEntities,
+          'entityName'  => 'Dataset',
+          'adminPage'   => true,
+          'userIsAdmin' => $userIsAdmin,
+          'displayName' => 'Dataset'
+        ));
+      }
+      else {
+        return $this->render('default/list_of_entities_to_update.html.twig', array(
+          'entities'    => $allEntities,
+          'entityName'  => 'Dataset',
+          'adminPage'   => true,
+          'userIsAdmin' => $userIsAdmin,
+          'displayName' => 'Dataset'
+        ));
+      }
     }
     $thisEntity = $em->getRepository('AppBundle\Entity\Dataset')->findOneBy(array('dataset_uid'=>$uid));
     if (!$thisEntity) {
@@ -128,13 +139,24 @@ class UpdateController extends Controller {
     $userIsAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
     if ($user == null) {
       $allEntities = $em->getRepository('AppBundle\Entity\Security\User')->findBy([], ['slug'=>'ASC']);
-      return $this->render('default/list_of_entities_to_update.html.twig', array(
-        'entities'   => $allEntities,
-        'entityName' => 'User',
-        'adminPage'  => true,
-        'userIsAdmin'=>$userIsAdmin,
-        'displayName'=>'User',
-      ));
+      if ($this->get('templating')->exists('institution/list_of_entities_to_update.html.twig')) {
+        return $this->render('institution/list_of_entities_to_update.html.twig', array(
+          'entities'   => $allEntities,
+          'entityName' => 'User',
+          'adminPage'  => true,
+          'userIsAdmin'=>$userIsAdmin,
+          'displayName'=>'User',
+        ));
+      }
+      else {
+        return $this->render('default/list_of_entities_to_update.html.twig', array(
+          'entities'   => $allEntities,
+          'entityName' => 'User',
+          'adminPage'  => true,
+          'userIsAdmin'=>$userIsAdmin,
+          'displayName'=>'User',
+        ));
+      }
     }
     $thisEntity = $em->getRepository('AppBundle\Entity\Security\User')->findOneBySlug($user);
     if (!$thisEntity) {
@@ -205,13 +227,24 @@ class UpdateController extends Controller {
       } else {
         $allEntities = $em->getRepository($updateEntity)->findBy([], ['slug'=>'ASC']);
       }
-      return $this->render('default/list_of_entities_to_update.html.twig', array(
-        'entities'    => $allEntities,
-        'entityName'  => $entityName,
-        'adminPage'   => true,
-        'userIsAdmin' => $userIsAdmin,
-        'displayName' => $entityTypeDisplayName
-      ));
+      if ($this->get('templating')->exists('institution/list_of_entities_to_update.html.twig')) {
+        return $this->render('institution/list_of_entities_to_update.html.twig', array(
+          'entities'    => $allEntities,
+          'entityName'  => $entityName,
+          'adminPage'   => true,
+          'userIsAdmin' => $userIsAdmin,
+          'displayName' => $entityTypeDisplayName
+        ));
+      }
+      else {
+        return $this->render('default/list_of_entities_to_update.html.twig', array(
+          'entities'    => $allEntities,
+          'entityName'  => $entityName,
+          'adminPage'   => true,
+          'userIsAdmin' => $userIsAdmin,
+          'displayName' => $entityTypeDisplayName
+        ));
+      }
     }
 
     $thisEntity = $em->getRepository($updateEntity)->findOneBySlug($slug);
