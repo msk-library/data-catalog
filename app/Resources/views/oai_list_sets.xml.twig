@@ -3,7 +3,7 @@
 {% for result in results %}
 {% if result.published %}
 <set>
-	<setName>{{ result.getTitle() }}</setName>
+	<setName>{{ result.getId() }}</setName>
 </set>
 {% endif %}
 {% endfor %}
